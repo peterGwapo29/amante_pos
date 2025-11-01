@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pos.controller.RegisterController">
+    <stylesheets>
+        <URL value="@/pos/css/register.css" />
+    </stylesheets>
+   <children>
+      <HBox alignment="CENTER" layoutY="22.0" prefHeight="50.0" prefWidth="800.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font></Text>
+         </children>
+      </HBox>
+      <TextField fx:id="textMiddlename" layoutX="409.0" layoutY="88.0" prefHeight="40.0" prefWidth="182.0" promptText="Middle Name" />
+      <TextField fx:id="textFirstname" layoutX="209.0" layoutY="88.0" prefHeight="40.0" prefWidth="181.0" promptText="First Name" />
+      <TextField fx:id="textLastname" layoutX="209.0" layoutY="142.0" prefHeight="40.0" prefWidth="182.0" promptText="Last Name" />
+      <VBox layoutX="209.0" layoutY="197.0" prefHeight="204.0" prefWidth="382.0">
+         <children>
+            <TextField fx:id="textEmailaddress" prefHeight="40.0" prefWidth="382.0" promptText="Email Address">
+               <VBox.margin>
+                  <Insets bottom="14.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="textUsername" prefHeight="40.0" prefWidth="382.0" promptText="Username">
+               <VBox.margin>
+                  <Insets bottom="14.0" />
+               </VBox.margin>
+            </TextField>
+            <PasswordField fx:id="textPassword" prefHeight="40.0" prefWidth="382.0" promptText="Password">
+               <VBox.margin>
+                  <Insets bottom="14.0" />
+               </VBox.margin>
+            </PasswordField>
+            <PasswordField fx:id="textConfirmPassword" prefHeight="40.0" prefWidth="382.0" promptText="Confirm Password" />
+         </children>
+      </VBox>
+      <Button fx:id="SignupButton" layoutX="209.0" layoutY="414.0" mnemonicParsing="false" onAction="#handleSignUpButton" prefHeight="35.0" prefWidth="382.0" text="Sign Up" />
+      <HBox alignment="CENTER" layoutY="470.0" prefHeight="25.0" prefWidth="800.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account?">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Hyperlink fx:id="SigninLink" onAction="#handleSigninButton" text="Sign in">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </HBox>
+      <ComboBox fx:id="combobox" layoutX="409.0" layoutY="142.0" prefHeight="40.0" prefWidth="182.0" promptText="Select Role" />
+   </children>
+</AnchorPane>
