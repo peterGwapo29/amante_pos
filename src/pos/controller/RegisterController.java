@@ -25,7 +25,6 @@ import java.sql.ResultSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
-import javafx.scene.layout.AnchorPane;
 import pos.model.DBconnection;
 
 /**
@@ -36,15 +35,7 @@ import pos.model.DBconnection;
 public class RegisterController implements Initializable {
 
     @FXML
-    private TextField textMiddlename;
-    @FXML
-    private TextField textFirstname;
-    @FXML
-    private TextField textLastname;
-    @FXML
     private TextField textEmailaddress;
-    @FXML
-    private TextField textUsername;
     @FXML
     private PasswordField textPassword;
     @FXML
@@ -55,37 +46,24 @@ public class RegisterController implements Initializable {
     private Hyperlink SigninLink;
     
     private Connection conn;
-    @FXML
-    private ComboBox<String> combobox;
-    ObservableList<String> role_list = FXCollections.observableArrayList("Admin", "Cashier");
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        combobox.setItems(role_list);
         conn = DBconnection.getConnection();
     }    
 
     @FXML
     private void handleSignUpButton(ActionEvent event) {
-        String role = combobox.getValue();
         
         if (event.getSource() == SignupButton) {
-            String fname = textFirstname.getText();
-            String mname = textMiddlename.getText();
-            String lname = textLastname.getText();
             String email = textEmailaddress.getText();
-            String uname = textUsername.getText();
             String pass = textPassword.getText();
             String cPass = textConfirmPassword.getText();
             
-            if( fname.isEmpty() ||
-                mname.isEmpty() ||
-                lname.isEmpty() ||
-                email.isEmpty() ||
-                uname.isEmpty() ||
+            if( email.isEmpty() ||
                 pass.isEmpty() ){
                 
                 System.out.println("Please fill in all fields.");
@@ -100,16 +78,6 @@ public class RegisterController implements Initializable {
                 System.out.println("Email is already taken.");
                 return;
             }
-
-            if (role == null || role.isEmpty()) {
-                System.out.println("Please select a role.");
-                return;
-            }
-            
-            if( checkUsername(uname) ){
-                System.out.println("Username is already taken.");
-                return;
-            }
             
             if( pass.length() <= 8 ){
                 System.out.println("Password must be at least 8 characters long");
@@ -120,21 +88,16 @@ public class RegisterController implements Initializable {
                 return;
             }
             
-            registerUser(fname, lname, mname, email, uname, pass, role);
+            registerUser(email, pass);
             clearFields();
 
         }
     }
     
     private void clearFields(){
-        textFirstname.setText("");
-        textMiddlename.setText("");
-        textLastname.setText("");
         textEmailaddress.setText("");
-        textUsername.setText("");
         textPassword.setText("");
         textConfirmPassword.setText("");
-        combobox.getSelectionModel().clearSelection();
     }
     
     public static boolean isValidEmail(String email){
@@ -158,34 +121,16 @@ public class RegisterController implements Initializable {
         }
     }
     
-    private boolean checkUsername(String uname){
+    void registerUser(String email, String pass) {    
+        String role = "Cashier";
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
             
-            String checkUsername = "SELECT username FROM user WHERE username = ?";
-            PreparedStatement checkStmt = conn.prepareStatement(checkUsername);
-            checkStmt.setString(1, uname);
-            ResultSet rs = checkStmt.executeQuery();
-
-            return rs.next();
-        }catch(Exception e){
-            System.out.println("Error: " + e);
-            return false;
-        }
-    }
-    
-    void registerUser(String fname, String lname, String mname, String email, String uname, String pass, String role) {        
-        try{
-            String sql = "INSERT INTO user (first_name, middle_name, last_name, email, username, password, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO user (email, password, role) VALUES (?, ?, ?)";
             
             PreparedStatement st = conn.prepareStatement(sql);
-            st.setString(1, fname);
-            st.setString(2, mname);
-            st.setString(3, lname);
-            st.setString(4, email);
-            st.setString(5, uname);
-            st.setString(6, pass);
-            st.setString(7, role); 
+            st.setString(1, email);
+            st.setString(2, pass);
+            st.setString(3, role); 
             
             int rows = st.executeUpdate();
             

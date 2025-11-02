@@ -3,7 +3,6 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -18,7 +17,7 @@
         <URL value="@/pos/css/register.css" />
     </stylesheets>
    <children>
-      <HBox alignment="CENTER" layoutY="22.0" prefHeight="50.0" prefWidth="800.0">
+      <HBox alignment="CENTER" layoutY="42.0" prefHeight="50.0" prefWidth="800.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP">
                <font>
@@ -26,17 +25,9 @@
                </font></Text>
          </children>
       </HBox>
-      <TextField fx:id="textMiddlename" layoutX="409.0" layoutY="88.0" prefHeight="40.0" prefWidth="182.0" promptText="Middle Name" />
-      <TextField fx:id="textFirstname" layoutX="209.0" layoutY="88.0" prefHeight="40.0" prefWidth="181.0" promptText="First Name" />
-      <TextField fx:id="textLastname" layoutX="209.0" layoutY="142.0" prefHeight="40.0" prefWidth="182.0" promptText="Last Name" />
-      <VBox layoutX="209.0" layoutY="197.0" prefHeight="204.0" prefWidth="382.0">
+      <VBox layoutX="209.0" layoutY="143.0" prefHeight="162.0" prefWidth="382.0">
          <children>
             <TextField fx:id="textEmailaddress" prefHeight="40.0" prefWidth="382.0" promptText="Email Address">
-               <VBox.margin>
-                  <Insets bottom="14.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="textUsername" prefHeight="40.0" prefWidth="382.0" promptText="Username">
                <VBox.margin>
                   <Insets bottom="14.0" />
                </VBox.margin>
@@ -49,8 +40,8 @@
             <PasswordField fx:id="textConfirmPassword" prefHeight="40.0" prefWidth="382.0" promptText="Confirm Password" />
          </children>
       </VBox>
-      <Button fx:id="SignupButton" layoutX="209.0" layoutY="414.0" mnemonicParsing="false" onAction="#handleSignUpButton" prefHeight="35.0" prefWidth="382.0" text="Sign Up" />
-      <HBox alignment="CENTER" layoutY="470.0" prefHeight="25.0" prefWidth="800.0">
+      <Button fx:id="SignupButton" layoutX="209.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleSignUpButton" prefHeight="35.0" prefWidth="382.0" text="Sign Up" />
+      <HBox alignment="CENTER" layoutY="465.0" prefHeight="25.0" prefWidth="800.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account?">
                <font>
@@ -64,6 +55,5 @@
             </Hyperlink>
          </children>
       </HBox>
-      <ComboBox fx:id="combobox" layoutX="409.0" layoutY="142.0" prefHeight="40.0" prefWidth="182.0" promptText="Select Role" />
    </children>
 </AnchorPane>

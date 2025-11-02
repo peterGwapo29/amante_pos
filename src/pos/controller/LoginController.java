@@ -26,8 +26,6 @@ public class LoginController implements Initializable {
     @FXML
     private AnchorPane loginBody;
     @FXML
-    private TextField textUsername;
-    @FXML
     private PasswordField textPassword;
     @FXML
     private Button loginButton;
@@ -35,6 +33,8 @@ public class LoginController implements Initializable {
     private Connection conn;
     @FXML
     private Hyperlink signupLink;
+    @FXML
+    private TextField textEmail;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -44,10 +44,10 @@ public class LoginController implements Initializable {
     @FXML
     private void handleLoginButton(ActionEvent event) throws IOException {
         if (event.getSource() == loginButton) {
-            String username = textUsername.getText().trim();
+            String email = textEmail.getText().trim();
             String password = textPassword.getText().trim();
 
-            if (username.isEmpty() || password.isEmpty()) {
+            if (email.isEmpty() || password.isEmpty()) {
                 System.out.println("Please fill in all fields!");
                 return;
             }
@@ -57,27 +57,18 @@ public class LoginController implements Initializable {
                     conn = DBconnection.getConnection();
                 }
 
-                String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
+                String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
                 PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1, username);
+                ps.setString(1, email);
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
 
                 if (rs.next()) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/pos/view/Dashboard.fxml"));
-                    Parent root = loader.load();
-                    
-                    DashboardController dashboardController = loader.getController();
-                    dashboardController.setAdminName(username);
-                    
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root));
-                    stage.show();
-                    
-                    Stage loginStage = (Stage) loginButton.getScene().getWindow();
-                    loginStage.close();
+                    String role = rs.getString("role");
+                    checkRole(role, email);
+                   
                 } else {
-                    System.out.println("Invalid username or password.");
+                    System.out.println("Invalid email or password.");
                 }
 
                 rs.close();
@@ -101,5 +92,47 @@ public class LoginController implements Initializable {
             stage.setScene(new Scene(parent));
             stage.show();
         }
+    }
+    
+    private void checkRole(String role, String email)throws IOException{
+        
+        Parent root;
+        FXMLLoader loader;
+        
+        if(role.equalsIgnoreCase("admin")){
+            loader = new FXMLLoader(getClass().getResource("/pos/view/Dashboard.fxml"));
+            root = loader.load();
+                    
+            DashboardController dashboardController = loader.getController();
+            dashboardController.setAdminName(email);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            closeWindow();
+            
+        }else{
+            loader = new FXMLLoader(getClass().getResource("/pos/view/pos.fxml"));
+            root = loader.load();
+                    
+//            DashboardController dashboardController = loader.getController();
+//            dashboardController.setAdminName(email);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            closeWindow();
+        }
+    }
+    
+    private void closeWindow(){
+        Stage loginStage = (Stage) loginButton.getScene().getWindow();
+        loginStage.close();
+    }
+    
+    private void fxmlView(){
+        System.out.println("asd");
     }
 }

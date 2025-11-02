@@ -49,12 +49,12 @@
       </HBox>
       <HBox alignment="CENTER" layoutY="202.0" prefHeight="40.0" prefWidth="800.0">
          <children>
-            <Label text="Username">
+            <Label prefHeight="20.0" prefWidth="58.0" text="Email">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="textUsername" prefHeight="40.0" prefWidth="240.0" promptText="Username">
+            <TextField fx:id="textEmail" prefHeight="40.0" prefWidth="240.0" promptText="Email">
                <HBox.margin>
                   <Insets left="14.0" />
                </HBox.margin>
