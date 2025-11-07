@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/peter/Documents/NetBeansProjects/prjPOS/src/pos/controller/LoginController.java</file>
+            <file>file:/C:/Users/peter/Documents/NetBeansProjects/prjPOS/src/pos/controller/RegisterController.java</file>
             <file>file:/C:/Users/peter/Documents/NetBeansProjects/prjPOS/src/pos/controller/PosController.java</file>
-            <file>file:/C:/Users/peter/Documents/NetBeansProjects/prjPOS/src/pos/controller/ProductController.java</file>
-            <file>file:/C:/Users/peter/Documents/NetBeansProjects/prjPOS/src/pos/view/Product.fxml</file>
-            <file>file:/C:/Users/peter/Documents/NetBeansProjects/prjPOS/src/pos/view/pos.fxml</file>
+            <file>file:/C:/Users/peter/Documents/NetBeansProjects/prjPOS/src/pos/model/DBconnection.java</file>
+            <file>file:/C:/Users/peter/Documents/NetBeansProjects/prjPOS/src/pos/controller/DashboardController.java</file>
         </group>
     </open-files>
 </project-private>

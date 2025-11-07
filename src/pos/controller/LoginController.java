@@ -43,6 +43,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private void handleLoginButton(ActionEvent event) throws IOException {
+        
         if (event.getSource() == loginButton) {
             String email = textEmail.getText().trim();
             String password = textPassword.getText().trim();
@@ -66,11 +67,10 @@ public class LoginController implements Initializable {
                 if (rs.next()) {
                     String role = rs.getString("role");
                     checkRole(role, email);
-                   
+                    storeUser(email, password, role);
                 } else {
                     System.out.println("Invalid email or password.");
                 }
-
                 rs.close();
                 ps.close();
 
@@ -102,16 +102,10 @@ public class LoginController implements Initializable {
         if(role.equalsIgnoreCase("admin")){
             loader = new FXMLLoader(getClass().getResource("/pos/view/Dashboard.fxml"));
             root = loader.load();
-                    
-            DashboardController dashboardController = loader.getController();
-            dashboardController.setUserInfo(email, role);
             
         }else{
             loader = new FXMLLoader(getClass().getResource("/pos/view/pos.fxml"));
             root = loader.load();
-            
-            PosController posController = loader.getController();
-            posController.setUserInfo(email, role);
         }
         
         Stage stage = new Stage();
@@ -136,8 +130,22 @@ public class LoginController implements Initializable {
         loginStage.close();
     }
     
-    private void fxmlView(){
-        System.out.println("asd");
+    private void storeUser(String email, String password, String role){
+        String status = "active";
+        try{
+            String sql = "INSERT INTO user_log (email, password, role, status) VALUES (?, ?, ?, ?)";
+            
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, email);
+            st.setString(2, password);
+            st.setString(3, role);
+            st.setString(4, status);
+            
+            st.executeUpdate();
+            
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
     }
     
 }
