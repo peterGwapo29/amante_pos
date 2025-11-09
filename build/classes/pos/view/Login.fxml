@@ -61,7 +61,7 @@
             </TextField>
          </children>
       </HBox>
-      <Circle fill="#1b3ed9" layoutX="45.0" layoutY="41.0" radius="100.0" stroke="#ffffff00" strokeType="INSIDE" style="-fx-background-color: #1b3ed9;" />
+      <Circle fill="#ac0061" layoutX="45.0" layoutY="41.0" radius="100.0" stroke="#ffffff00" strokeType="INSIDE" style="-fx-background-color: #1b3ed9;" />
       <HBox alignment="CENTER" layoutY="469.0" prefHeight="25.0" prefWidth="800.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?">

@@ -1,5 +1,5 @@
 #loginButton{
-    -fx-background-color: green;
-    -fx-text-fill: black;
+    -fx-background-color: #f2b807;
+    -fx-text-fill: white;
     -fx-cursor: hand;
 }

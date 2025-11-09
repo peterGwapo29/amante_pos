@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="sidebar" prefHeight="800.0" prefWidth="250.0" style="-fx-background-color: #1b3ed9;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pos.sidebar.SBController">
+<AnchorPane fx:id="sidebar" prefHeight="800.0" prefWidth="250.0" style="-fx-background-color: #ac0061" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pos.sidebar.SBController">
     <children>
 
         <!-- Profile Section -->
@@ -22,7 +22,7 @@
                   <Font name="Arial Black" size="14.0" />
                </font></Label>
 
-                <Line endX="240" startX="10" stroke="white" strokeWidth="0.5" />
+                <Line endX="180.0" startX="10" stroke="white" strokeWidth="0.5" />
 
                 <Label fx:id="roleType" styleClass="profile-role" text="Role" textFill="WHITE">
                <font>
@@ -35,7 +35,7 @@
         <VBox alignment="TOP_CENTER" layoutY="200.0" prefWidth="250.0" spacing="12">
             <children>
 
-                <Button fx:id="btnDashboard" prefHeight="40.0" prefWidth="230.0" styleClass="menu-btn" text="Dashboard" textFill="#162463">
+                <Button fx:id="btnDashboard" prefHeight="40.0" prefWidth="230.0" styleClass="menu-btn" text="Dashboard">
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>
