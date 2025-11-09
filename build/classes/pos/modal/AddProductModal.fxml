@@ -44,10 +44,10 @@
         <TextArea fx:id="txtDescription" prefRowCount="3" prefWidth="1020.0" promptText="Product Description" styleClass="text-area" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
         <Label text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <ComboBox fx:id="cmbCategory" prefHeight="26.0" prefWidth="160.0" styleClass="combo-box" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <ComboBox fx:id="cmbCategory" prefHeight="26.0" prefWidth="160.0" promptText="Select Category" styleClass="combo-box" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
         <Label text="Supplier:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <ComboBox fx:id="cmbSupplier" prefHeight="26.0" prefWidth="160.0" styleClass="combo-box" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <ComboBox fx:id="cmbSupplier" prefHeight="26.0" prefWidth="160.0" promptText="Select Supplier" styleClass="combo-box" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
         <Label text="SKU:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
         <TextField fx:id="txtSKU" promptText="SKU" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -56,7 +56,7 @@
         <TextField fx:id="txtBarcode" promptText="Barcode" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
         <Label prefWidth="110.0" text="Inventory Tracking:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-        <ComboBox fx:id="cmbInventoryTracking" styleClass="combo-box" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <ComboBox fx:id="cmbInventoryTracking" prefWidth="160.0" promptText="Select Track" styleClass="combo-box" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
         <Label text="Base Unit:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
         <TextField fx:id="txtBaseUnit" promptText="e.g. piece, box" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="7" />
@@ -74,11 +74,11 @@
         <TextField fx:id="txtReorderLevel" promptText="0" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="11" />
 
         <Label text="Product Type:" GridPane.columnIndex="0" GridPane.rowIndex="12" />
-        <ComboBox fx:id="cmbProductType" prefWidth="160.0" styleClass="combo-box" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+        <ComboBox fx:id="cmbProductType" prefWidth="160.0" promptText="Select Product Type" styleClass="combo-box" GridPane.columnIndex="1" GridPane.rowIndex="12" />
 
         <Label text="Image:" GridPane.columnIndex="0" GridPane.rowIndex="13" />
         <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="13">
-            <Button fx:id="btnUploadImage" styleClass="upload-btn" text="Upload Image" />
+            <Button fx:id="btnUploadImage" onAction="#handleUploadImage" styleClass="upload-btn" text="Upload Image" />
             <Label fx:id="lblImageName" styleClass="image-label" text="No file selected" />
         </HBox>
       <rowConstraints>
