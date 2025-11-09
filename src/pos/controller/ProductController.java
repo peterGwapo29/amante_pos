@@ -24,6 +24,8 @@ import pos.model.DBconnection;
 import pos.model.Product;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javafx.scene.image.ImageView;
+import pos.CRUD.AddProductController;
 
 public class ProductController implements Initializable {
 
@@ -47,7 +49,7 @@ public class ProductController implements Initializable {
     @FXML private TableColumn<Product, BigDecimal> costColumn;
     @FXML private TableColumn<Product, Integer> initialStockColumn;
     @FXML private TableColumn<Product, Integer> currentStockColumn;
-    @FXML private TableColumn<Product, String> imageColumn;
+    @FXML private TableColumn<Product, ImageView> imageColumn;
     @FXML private TableColumn<Product, Boolean> activeColumn;
     @FXML private TableColumn<Product, String> createdAtColumn;
 
@@ -99,7 +101,7 @@ public class ProductController implements Initializable {
         costColumn.setCellValueFactory(new PropertyValueFactory<>("cost"));
         initialStockColumn.setCellValueFactory(new PropertyValueFactory<>("initialStock"));
         currentStockColumn.setCellValueFactory(new PropertyValueFactory<>("currentStock"));
-        imageColumn.setCellValueFactory(new PropertyValueFactory<>("image"));
+        imageColumn.setCellValueFactory(new PropertyValueFactory<>("image")); 
         activeColumn.setCellValueFactory(new PropertyValueFactory<>("isActive"));
         createdAtColumn.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
     }
@@ -144,12 +146,23 @@ public class ProductController implements Initializable {
 
     @FXML
     private void addProductModal(ActionEvent event) throws IOException {
-        if(event.getSource() == addProductButton){
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/pos/modal/AddProductModal.fxml"));
             Parent root = loader.load();
+
+            AddProductController addProductController = loader.getController();
+            addProductController.setProductController(this);
+
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+    
+    public void reloadTable() {
+    loadProductData();
+}
 }

@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import pos.model.CategoryDAO;
 import pos.model.DBconnection;
 import session.Category;
+import pos.controller.ProductController;
 
 public class AddProductController implements Initializable {
 
@@ -61,7 +62,8 @@ public class AddProductController implements Initializable {
     private Button btnSubmit;
     
     private Connection conn;
-    
+    private ProductController productController;
+
 //    cmbCategory
 
     @Override
@@ -168,6 +170,11 @@ public class AddProductController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Product added successfully!");
                 alert.showAndWait();
+                
+                if (productController != null) {
+                    productController.reloadTable();
+                }
+
                 clearFields();
                 closeWindow();
             }
@@ -217,5 +224,9 @@ public class AddProductController implements Initializable {
     private void closeWindow(){
         Stage loginStage = (Stage) btnSubmit.getScene().getWindow();
         loginStage.close();
+    }
+    
+    public void setProductController(ProductController productController) {
+        this.productController = productController;
     }
 }

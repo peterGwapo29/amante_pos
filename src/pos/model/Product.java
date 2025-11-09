@@ -2,6 +2,8 @@ package pos.model;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Product {
     private int id;
@@ -17,14 +19,14 @@ public class Product {
     private BigDecimal cost;
     private int initialStock;
     private int currentStock;
-    private String image;
+    private String imagePath;
     private boolean isActive;
     private Timestamp createdAt;
 
     public Product(int id, String name, String description, int categoryId, int supplierId, String sku,
                    String barcode, String inventoryTracking, String baseUnit,
                    BigDecimal price, BigDecimal cost, int initialStock, int currentStock,
-                   String image, boolean isActive, Timestamp createdAt) {
+                   String imagePath, boolean isActive, Timestamp createdAt) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -38,7 +40,7 @@ public class Product {
         this.cost = cost;
         this.initialStock = initialStock;
         this.currentStock = currentStock;
-        this.image = image;
+        this.imagePath = imagePath;
         this.isActive = isActive;
         this.createdAt = createdAt;
     }
@@ -56,7 +58,21 @@ public class Product {
     public BigDecimal getCost() { return cost; }
     public int getInitialStock() { return initialStock; }
     public int getCurrentStock() { return currentStock; }
-    public String getImage() { return image; }
     public boolean getIsActive() { return isActive; }
     public Timestamp getCreatedAt() { return createdAt; }
+    
+     public String getImagePath() { return imagePath; }
+
+    public ImageView getImage() {
+        if (imagePath == null || imagePath.isEmpty()) return null;
+
+        ImageView imageView = new ImageView();
+        try {
+            Image img = new Image("file:" + imagePath, 50, 50, true, true);
+            imageView.setImage(img);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return imageView;
+    }
 }
