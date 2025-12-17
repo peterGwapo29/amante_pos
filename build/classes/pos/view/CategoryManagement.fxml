@@ -1,39 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefWidth="400" prefHeight="300"
+<AnchorPane prefWidth="520" prefHeight="420"
             xmlns="http://javafx.com/javafx/24.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pos.controller.CategoryManagementController">
-    
+            fx:controller="pos.controller.CategoryManagementController"
+            styleClass="cm-root">
+
     <stylesheets>
         <URL value="@/pos/css/categorymanagement.css"/>
     </stylesheets>
 
-    <VBox spacing="10" layoutX="20" layoutY="20">
+    <children>
+        <VBox spacing="12"
+              AnchorPane.topAnchor="16" AnchorPane.leftAnchor="16"
+              AnchorPane.rightAnchor="16" AnchorPane.bottomAnchor="16"
+              styleClass="cm-card">
 
-        <Label text="Manage Categories" style="-fx-font-size: 18;" />
+            <!-- Header -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Manage Categories" styleClass="cm-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Add / Update / Delete categories" styleClass="cm-subtitle"/>
+            </HBox>
 
-        <TableView fx:id="tableView" prefHeight="150">
-            <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
-                <TableColumn fx:id="colName" text="Category Name" prefWidth="260"/>
-            </columns>
-        </TableView>
+            <!-- Table -->
+            <TableView fx:id="tableView" VBox.vgrow="ALWAYS" styleClass="cm-table">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
+                    <TableColumn fx:id="colName" text="Category Name" prefWidth="380"/>
+                </columns>
+            </TableView>
 
-        <TextField fx:id="txtName" promptText="Category Name"/>
+            <!-- Form -->
+            <TextField fx:id="txtName" promptText="Category Name" styleClass="cm-field"/>
 
-        <HBox spacing="10">
-            <Button text="Add" onAction="#addCategory"/>
-            <Button text="Update" onAction="#updateCategory"/>
-            <Button text="Delete" onAction="#deleteCategory"/>
-        </HBox>
+            <!-- Actions -->
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Delete" onAction="#deleteCategory" styleClass="cm-btn-danger"/>
+                <Button text="Update" onAction="#updateCategory" styleClass="cm-btn-secondary"/>
+                <Button text="Add" onAction="#addCategory" styleClass="cm-btn-primary"/>
+            </HBox>
 
-    </VBox>
+        </VBox>
+    </children>
 </AnchorPane>

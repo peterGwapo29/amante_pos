@@ -1,7 +1,113 @@
-/*
- * Empty Stylesheet file.
- */
-
-.mainFxmlClass {
-
+.cm-root{
+    -fx-background-color: #f5f5f5;
+    -fx-font-family: "Poppins","Inter","Segoe UI","Arial";
 }
+
+.cm-card{
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(0,0,0,0.06);
+    -fx-border-radius: 12;
+    -fx-padding: 14;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 18, 0.18, 0, 4);
+}
+
+/* Header */
+.cm-title{
+    -fx-text-fill: #111827;
+    -fx-font-size: 16px;
+    -fx-font-weight: 900;
+}
+.cm-subtitle{
+    -fx-text-fill: rgba(17,24,39,0.55);
+    -fx-font-weight: 700;
+}
+
+/* Field */
+.cm-field{
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(0,0,0,0.18);
+    -fx-border-radius: 10;
+    -fx-padding: 9 12 9 12;
+    -fx-text-fill: #111827;
+    -fx-prompt-text-fill: rgba(17,24,39,0.45);
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+.cm-field:focused{
+    -fx-border-color: #ee4d2d;
+}
+
+/* Table */
+.cm-table{
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0,0,0,0.08);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-table-cell-border-color: transparent;
+}
+
+.cm-table .column-header-background{
+    -fx-background-color: #f9fafb;
+    -fx-background-radius: 10 10 0 0;
+    -fx-padding: 6;
+}
+.cm-table .column-header, .cm-table .filler{
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0,0,0,0.08);
+    -fx-border-width: 0 0 1 0;
+}
+.cm-table .column-header .label{
+    -fx-text-fill: rgba(17,24,39,0.86);
+    -fx-font-weight: 900;
+}
+
+.cm-table .table-row-cell{
+    -fx-background-color: white;
+    -fx-border-color: rgba(0,0,0,0.06);
+    -fx-border-width: 0 0 1 0;
+    -fx-cell-size: 40px;
+}
+.cm-table .table-row-cell:odd{ -fx-background-color: #fcfcfc; }
+.cm-table .table-row-cell:filled:hover{ -fx-background-color: #fff7f5; }
+.cm-table .table-row-cell:filled:selected,
+.cm-table .table-row-cell:filled:selected:hover{
+    -fx-background-color: rgba(238,77,45,0.14);
+}
+
+.cm-table .table-cell{
+    -fx-text-fill: rgba(17,24,39,0.90);
+    -fx-padding: 0 10 0 10;
+}
+
+/* Buttons */
+.cm-btn-primary{
+    -fx-background-color: #ee4d2d;
+    -fx-text-fill: white;
+    -fx-font-weight: 900;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-padding: 9 16 9 16;
+}
+.cm-btn-primary:hover{ -fx-background-color: #ff5a3c; }
+
+.cm-btn-secondary{
+    -fx-background-color: rgba(238,77,45,0.10);
+    -fx-text-fill: #ee4d2d;
+    -fx-font-weight: 900;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-padding: 9 16 9 16;
+}
+.cm-btn-secondary:hover{ -fx-background-color: rgba(238,77,45,0.16); }
+
+.cm-btn-danger{
+    -fx-background-color: rgba(239,68,68,0.14);
+    -fx-text-fill: #b91c1c;
+    -fx-font-weight: 900;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-padding: 9 16 9 16;
+}
+.cm-btn-danger:hover{ -fx-background-color: rgba(239,68,68,0.22); }

@@ -57,15 +57,15 @@
                     <VBox prefWidth="280.0" spacing="6" styleClass="card">
                         <padding><Insets bottom="14" left="14" right="14" top="14" /></padding>
                         <Label styleClass="card-label" text="Total Sales (Today)" />
-                        <Label styleClass="card-value" text="₱ 0.00" />
-                        <Label styleClass="card-sub" text="+0% vs yesterday" />
+                        <Label fx:id="lblTotalSalesToday" styleClass="card-value" text="₱ 0.00" />
+                        <Label fx:id="lblSalesVsYesterday" styleClass="card-sub" text="+0% vs yesterday" />
                     </VBox>
 
                     <!-- Card 2 -->
                     <VBox prefWidth="280.0" spacing="6" styleClass="card">
                         <padding><Insets bottom="14" left="14" right="14" top="14" /></padding>
                         <Label styleClass="card-label" text="Transactions" />
-                        <Label styleClass="card-value" text="0" />
+                        <Label fx:id="lblTransactionsToday" styleClass="card-value" text="0" />
                         <Label styleClass="card-sub" text="Today" />
                     </VBox>
 
@@ -73,123 +73,123 @@
                     <VBox prefWidth="280.0" spacing="6" styleClass="card">
                         <padding><Insets bottom="14" left="14" right="14" top="14" /></padding>
                         <Label styleClass="card-label" text="Items Sold" />
-                        <Label styleClass="card-value" text="0" />
+                        <Label fx:id="lblItemsSoldToday" styleClass="card-value" text="0" />
                         <Label styleClass="card-sub" text="Today" />
                     </VBox>
 
-                    <!-- Card 4 (accent) -->
+                    <!-- Card 4 -->
                     <VBox prefWidth="280.0" spacing="6" styleClass="card card-accent">
                         <padding><Insets bottom="14" left="14" right="14" top="14" /></padding>
                         <Label styleClass="card-label" text="Low Stock Alerts" />
-                        <Label styleClass="card-value-accent" text="0" />
+                        <Label fx:id="lblLowStockCount" styleClass="card-value-accent" text="0" />
                         <Label styleClass="card-sub" text="Needs restock" />
                     </VBox>
                 </HBox>
                 
                 <!-- Section: Quick Actions -->
-<Label layoutX="18.0" layoutY="170.0" text="Quick Actions" styleClass="section-title"/>
+                <Label layoutX="18.0" layoutY="170.0" text="Quick Actions" styleClass="section-title"/>
 
-<HBox layoutX="18.0" layoutY="206.0" spacing="12.0">
-    <VBox prefWidth="280.0" spacing="8" styleClass="action-card">
-        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
-        <Label text="New Transaction" styleClass="action-title"/>
-        <Label text="Open the POS checkout screen." styleClass="action-sub"/>
-        <Label text="Shortcut: F1" styleClass="action-hint"/>
-    </VBox>
+                <HBox layoutX="18.0" layoutY="206.0" spacing="12.0">
+                    <VBox fx:id="cardNewTransaction" prefWidth="280.0" spacing="8" styleClass="action-card">
+                        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+                        <Label text="New Transaction" styleClass="action-title"/>
+                        <Label text="Open the POS checkout screen." styleClass="action-sub"/>
+                        <Label text="Shortcut: F1" styleClass="action-hint"/>
+                    </VBox>
 
-    <VBox prefWidth="280.0" spacing="8" styleClass="action-card">
-        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
-        <Label text="Add Product" styleClass="action-title"/>
-        <Label text="Create a new product quickly." styleClass="action-sub"/>
-        <Label text="Shortcut: F2" styleClass="action-hint"/>
-    </VBox>
+                    <VBox fx:id="cardAddProduct"  prefWidth="280.0" spacing="8" styleClass="action-card">
+                        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+                        <Label text="Add Product" styleClass="action-title"/>
+                        <Label text="Create a new product quickly." styleClass="action-sub"/>
+                        <Label text="Shortcut: F2" styleClass="action-hint"/>
+                    </VBox>
 
-    <VBox prefWidth="280.0" spacing="8" styleClass="action-card">
-        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
-        <Label text="View Reports" styleClass="action-title"/>
-        <Label text="See sales summary and export CSV." styleClass="action-sub"/>
-        <Label text="Shortcut: F3" styleClass="action-hint"/>
-    </VBox>
+                    <VBox fx:id="cardViewReports" prefWidth="280.0" spacing="8" styleClass="action-card">
+                        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+                        <Label text="View Reports" styleClass="action-title"/>
+                        <Label text="See sales summary and export CSV." styleClass="action-sub"/>
+                        <Label text="Shortcut: F3" styleClass="action-hint"/>
+                    </VBox>
 
-    <VBox prefWidth="280.0" spacing="8" styleClass="action-card action-card-accent">
-        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
-        <Label text="Low Stock List" styleClass="action-title"/>
-        <Label text="Review items that need restock." styleClass="action-sub"/>
-        <Label text="Suggested action" styleClass="action-hint"/>
-    </VBox>
-</HBox>
+                    <VBox fx:id="cardLowStockList" prefWidth="280.0" spacing="8" styleClass="action-card action-card-accent">
+                        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+                        <Label text="Low Stock List" styleClass="action-title"/>
+                        <Label text="Review items that need restock." styleClass="action-sub"/>
+                        <Label text="Suggested action" styleClass="action-hint"/>
+                    </VBox>
+                </HBox>
 
-<!-- Section: Today Snapshot -->
-<Label layoutX="18.0" layoutY="330.0" text="Today Snapshot" styleClass="section-title"/>
+                <!-- Section: Today Snapshot -->
+                <Label layoutX="18.0" layoutY="330.0" text="Today Snapshot" styleClass="section-title"/>
 
-<HBox layoutX="18.0" layoutY="366.0" spacing="12.0">
+                <HBox layoutX="18.0" layoutY="366.0" spacing="12.0">
 
-    <!-- Left: Top products -->
-    <VBox prefWidth="580.0" prefHeight="230.0" spacing="10" styleClass="card">
-        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+                    <!-- Left: Top products -->
+                    <VBox prefWidth="580.0" prefHeight="230.0" spacing="10" styleClass="card">
+                        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
 
-        <HBox alignment="CENTER_LEFT">
-            <Label text="Top Selling Products" styleClass="panel-title"/>
-            <Region HBox.hgrow="ALWAYS"/>
-            <Label text="Today" styleClass="pill"/>
-        </HBox>
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Top Selling Products" styleClass="panel-title"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label text="Today" styleClass="pill"/>
+                        </HBox>
 
-        <!-- Simple list rows (no fx:id needed) -->
-        <VBox spacing="8">
-            <HBox styleClass="list-row">
-                <Label text="1. Product A" styleClass="list-left"/>
-                <Region HBox.hgrow="ALWAYS"/>
-                <Label text="12 sold" styleClass="list-right"/>
-            </HBox>
-            <HBox styleClass="list-row">
-                <Label text="2. Product B" styleClass="list-left"/>
-                <Region HBox.hgrow="ALWAYS"/>
-                <Label text="9 sold" styleClass="list-right"/>
-            </HBox>
-            <HBox styleClass="list-row">
-                <Label text="3. Product C" styleClass="list-left"/>
-                <Region HBox.hgrow="ALWAYS"/>
-                <Label text="7 sold" styleClass="list-right"/>
-            </HBox>
-            <HBox styleClass="list-row">
-                <Label text="4. Product D" styleClass="list-left"/>
-                <Region HBox.hgrow="ALWAYS"/>
-                <Label text="5 sold" styleClass="list-right"/>
-            </HBox>
-        </VBox>
-    </VBox>
+                        <!-- Simple list rows (no fx:id needed) -->
+                        <VBox fx:id="boxTopProducts" spacing="8">
+                            <HBox styleClass="list-row">
+                                <Label text="1. Product A" styleClass="list-left"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="12 sold" styleClass="list-right"/>
+                            </HBox>
+                            <HBox styleClass="list-row">
+                                <Label text="2. Product B" styleClass="list-left"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="9 sold" styleClass="list-right"/>
+                            </HBox>
+                            <HBox styleClass="list-row">
+                                <Label text="3. Product C" styleClass="list-left"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="7 sold" styleClass="list-right"/>
+                            </HBox>
+                            <HBox styleClass="list-row">
+                                <Label text="4. Product D" styleClass="list-left"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="5 sold" styleClass="list-right"/>
+                            </HBox>
+                        </VBox>
+                    </VBox>
 
-    <!-- Right: Alerts -->
-    <VBox prefWidth="580.0" prefHeight="230.0" spacing="10" styleClass="card card-accent">
-        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+                    <!-- Right: Alerts -->
+                    <VBox prefWidth="580.0" prefHeight="230.0" spacing="10" styleClass="card card-accent">
+                        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
 
-        <HBox alignment="CENTER_LEFT">
-            <Label text="Alerts" styleClass="panel-title"/>
-            <Region HBox.hgrow="ALWAYS"/>
-            <Label text="Action Needed" styleClass="pill pill-accent"/>
-        </HBox>
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Alerts" styleClass="panel-title"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label text="Action Needed" styleClass="pill pill-accent"/>
+                        </HBox>
 
-        <VBox spacing="8">
-            <HBox styleClass="alert-row">
-                <Label text="Low stock:" styleClass="alert-label"/>
-                <Label text="3 items below minimum" styleClass="alert-value"/>
-            </HBox>
-            <HBox styleClass="alert-row">
-                <Label text="Out of stock:" styleClass="alert-label"/>
-                <Label text="1 item" styleClass="alert-value"/>
-            </HBox>
-            <HBox styleClass="alert-row">
-                <Label text="Pending updates:" styleClass="alert-label"/>
-                <Label text="2 products missing barcode" styleClass="alert-value"/>
-            </HBox>
-            <HBox styleClass="alert-row">
-                <Label text="Tip:" styleClass="alert-label"/>
-                <Label text="Check reports for best sellers" styleClass="alert-value"/>
-            </HBox>
-        </VBox>
-    </VBox>
+                        <VBox fx:id="boxAlerts" spacing="8">
+                            <HBox styleClass="alert-row">
+                                <Label text="Low stock:" styleClass="alert-label"/>
+                                <Label text="3 items below minimum" styleClass="alert-value"/>
+                            </HBox>
+                            <HBox styleClass="alert-row">
+                                <Label text="Out of stock:" styleClass="alert-label"/>
+                                <Label text="1 item" styleClass="alert-value"/>
+                            </HBox>
+                            <HBox styleClass="alert-row">
+                                <Label text="Pending updates:" styleClass="alert-label"/>
+                                <Label text="2 products missing barcode" styleClass="alert-value"/>
+                            </HBox>
+                            <HBox styleClass="alert-row">
+                                <Label text="Tip:" styleClass="alert-label"/>
+                                <Label text="Check reports for best sellers" styleClass="alert-value"/>
+                            </HBox>
+                        </VBox>
+                    </VBox>
 
-</HBox>
+                </HBox>
 
                 
 

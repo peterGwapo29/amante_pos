@@ -1,49 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefWidth="750" prefHeight="420"
+<AnchorPane prefWidth="820" prefHeight="520"
             xmlns="http://javafx.com/javafx/24.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pos.controller.VariantManagementController">
-    
-        <stylesheets>
-            <URL value="@/pos/css/variantmanagement.css"/>
-        </stylesheets>
-    <VBox spacing="10" layoutX="15" layoutY="15">
-        <Label fx:id="lblTitle" text="Manage Variants" style="-fx-font-size: 18;"/>
+            fx:controller="pos.controller.VariantManagementController"
+            styleClass="vm-root">
 
-        <TableView fx:id="tableView" prefHeight="220">
-            <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
-                <TableColumn fx:id="colName" text="Name" prefWidth="160"/>
-                <TableColumn fx:id="colSku" text="SKU" prefWidth="110"/>
-                <TableColumn fx:id="colBarcode" text="Barcode" prefWidth="110"/>
-                <TableColumn fx:id="colPrice" text="Price" prefWidth="80"/>
-                <TableColumn fx:id="colStock" text="Stock" prefWidth="70"/>
-                <TableColumn fx:id="colActive" text="Active" prefWidth="70"/>
-            </columns>
-        </TableView>
+    <stylesheets>
+        <URL value="@/pos/css/variantmanagement.css"/>
+    </stylesheets>
 
-        <HBox spacing="10">
-            <TextField fx:id="txtName" promptText="Variant name (e.g. 250ml)" prefWidth="160"/>
-            <TextField fx:id="txtSku" promptText="SKU" prefWidth="110"/>
-            <TextField fx:id="txtBarcode" promptText="Barcode" prefWidth="110"/>
-            <TextField fx:id="txtPrice" promptText="Price" prefWidth="80"/>
-            <TextField fx:id="txtCost" promptText="Cost" prefWidth="80"/>
-            <TextField fx:id="txtStock" promptText="Stock" prefWidth="70"/>
-            <CheckBox fx:id="chkActive" text="Active" selected="true"/>
-        </HBox>
+    <children>
+        <VBox spacing="12"
+              AnchorPane.topAnchor="16" AnchorPane.leftAnchor="16"
+              AnchorPane.rightAnchor="16" AnchorPane.bottomAnchor="16"
+              styleClass="vm-card">
 
-        <HBox spacing="10">
-            <Button text="Add" onAction="#addVariant"/>
-            <Button text="Update" onAction="#updateVariant"/>
-            <Button text="Delete" onAction="#deleteVariant"/>
-        </HBox>
-    </VBox>
+            <!-- Header -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label fx:id="lblTitle" text="Manage Variants" styleClass="vm-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Add / Update / Delete variant records" styleClass="vm-subtitle"/>
+            </HBox>
+
+            <!-- Table -->
+            <TableView fx:id="tableView" VBox.vgrow="ALWAYS" styleClass="vm-table">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+                    <TableColumn fx:id="colName" text="Name" prefWidth="180"/>
+                    <TableColumn fx:id="colSku" text="SKU" prefWidth="120"/>
+                    <TableColumn fx:id="colBarcode" text="Barcode" prefWidth="140"/>
+                    <TableColumn fx:id="colPrice" text="Price" prefWidth="90"/>
+                    <TableColumn fx:id="colStock" text="Stock" prefWidth="90"/>
+                    <TableColumn fx:id="colActive" text="Active" prefWidth="90"/>
+                </columns>
+            </TableView>
+
+            <!-- Form row -->
+            <GridPane hgap="10" vgap="10" styleClass="vm-form">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="26"/>
+                    <ColumnConstraints percentWidth="14"/>
+                    <ColumnConstraints percentWidth="18"/>
+                    <ColumnConstraints percentWidth="10"/>
+                    <ColumnConstraints percentWidth="10"/>
+                    <ColumnConstraints percentWidth="10"/>
+                    <ColumnConstraints percentWidth="12"/>
+                </columnConstraints>
+
+                <TextField fx:id="txtName" promptText="Variant name (e.g. 250ml)" styleClass="vm-field"
+                           GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtSku" promptText="SKU" styleClass="vm-field"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <TextField fx:id="txtBarcode" promptText="Barcode" styleClass="vm-field"
+                           GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                <TextField fx:id="txtPrice" promptText="Price" styleClass="vm-field"
+                           GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                <TextField fx:id="txtCost" promptText="Cost" styleClass="vm-field"
+                           GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+                <TextField fx:id="txtStock" promptText="Stock" styleClass="vm-field"
+                           GridPane.rowIndex="0" GridPane.columnIndex="5"/>
+
+                <HBox spacing="10" alignment="CENTER_LEFT"
+                      GridPane.rowIndex="0" GridPane.columnIndex="6">
+                    <CheckBox fx:id="chkActive" text="Active" selected="true" styleClass="vm-check"/>
+                </HBox>
+            </GridPane>
+
+            <!-- Actions -->
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Delete" onAction="#deleteVariant" styleClass="vm-btn-danger"/>
+                <Button text="Update" onAction="#updateVariant" styleClass="vm-btn-secondary"/>
+                <Button text="Add" onAction="#addVariant" styleClass="vm-btn-primary"/>
+            </HBox>
+
+        </VBox>
+    </children>
 </AnchorPane>

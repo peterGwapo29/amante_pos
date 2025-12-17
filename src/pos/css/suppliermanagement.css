@@ -1,7 +1,117 @@
-/*
- * Empty Stylesheet file.
- */
-
-.mainFxmlClass {
-
+.sm-root{
+    -fx-background-color: #f5f5f5;
+    -fx-font-family: "Poppins","Inter","Segoe UI","Arial";
 }
+
+/* Card container */
+.sm-card{
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(0,0,0,0.06);
+    -fx-border-radius: 12;
+    -fx-padding: 14;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 18, 0.18, 0, 4);
+}
+
+/* Header */
+.sm-header{
+    -fx-padding: 4 0 6 0;
+}
+.sm-title{
+    -fx-text-fill: #111827;
+    -fx-font-size: 16px;
+    -fx-font-weight: 900;
+}
+.sm-subtitle{
+    -fx-text-fill: rgba(17,24,39,0.55);
+    -fx-font-weight: 700;
+}
+
+/* Fields */
+.sm-field, .combo-box{
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(0,0,0,0.18);
+    -fx-border-radius: 10;
+    -fx-padding: 9 12 9 12;
+    -fx-text-fill: #111827;
+    -fx-prompt-text-fill: rgba(17,24,39,0.45);
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+.sm-field:focused, .combo-box:focused{
+    -fx-border-color: #ee4d2d;
+}
+
+/* Table */
+.sm-table{
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0,0,0,0.08);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-table-cell-border-color: transparent;
+}
+
+.sm-table .column-header-background{
+    -fx-background-color: #f9fafb;
+    -fx-background-radius: 10 10 0 0;
+    -fx-padding: 6;
+}
+.sm-table .column-header, .sm-table .filler{
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0,0,0,0.08);
+    -fx-border-width: 0 0 1 0;
+}
+.sm-table .column-header .label{
+    -fx-text-fill: rgba(17,24,39,0.86);
+    -fx-font-weight: 900;
+}
+
+.sm-table .table-row-cell{
+    -fx-background-color: white;
+    -fx-border-color: rgba(0,0,0,0.06);
+    -fx-border-width: 0 0 1 0;
+    -fx-cell-size: 40px;
+}
+.sm-table .table-row-cell:odd{ -fx-background-color: #fcfcfc; }
+.sm-table .table-row-cell:filled:hover{ -fx-background-color: #fff7f5; }
+.sm-table .table-row-cell:filled:selected,
+.sm-table .table-row-cell:filled:selected:hover{
+    -fx-background-color: rgba(238,77,45,0.14);
+}
+
+.sm-table .table-cell{
+    -fx-text-fill: rgba(17,24,39,0.90);
+    -fx-padding: 0 10 0 10;
+}
+
+/* Buttons */
+.sm-btn-primary{
+    -fx-background-color: #ee4d2d;
+    -fx-text-fill: white;
+    -fx-font-weight: 900;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-padding: 9 16 9 16;
+}
+.sm-btn-primary:hover{ -fx-background-color: #ff5a3c; }
+
+.sm-btn-secondary{
+    -fx-background-color: rgba(238,77,45,0.10);
+    -fx-text-fill: #ee4d2d;
+    -fx-font-weight: 900;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-padding: 9 16 9 16;
+}
+.sm-btn-secondary:hover{ -fx-background-color: rgba(238,77,45,0.16); }
+
+.sm-btn-danger{
+    -fx-background-color: rgba(239,68,68,0.14);
+    -fx-text-fill: #b91c1c;
+    -fx-font-weight: 900;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-padding: 9 16 9 16;
+}
+.sm-btn-danger:hover{ -fx-background-color: rgba(239,68,68,0.22); }

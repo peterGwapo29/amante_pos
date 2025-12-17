@@ -1,43 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefWidth="760" prefHeight="420"
+<AnchorPane prefWidth="860" prefHeight="520"
             xmlns="http://javafx.com/javafx/24.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pos.controller.ModifierManagementController">
-    
-        <stylesheets>
-            <URL value="@/pos/css/modifiermanagement.css"/>
-        </stylesheets>
-    <VBox spacing="10" layoutX="15" layoutY="15">
-        <Label fx:id="lblTitle" text="Manage Modifiers" style="-fx-font-size: 18;"/>
+            fx:controller="pos.controller.ModifierManagementController"
+            styleClass="mm-root">
 
-        <TableView fx:id="tableView" prefHeight="230">
-            <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
-                <TableColumn fx:id="colName" text="Name" prefWidth="220"/>
-                <TableColumn fx:id="colType" text="Type" prefWidth="100"/>
-                <TableColumn fx:id="colRequired" text="Required" prefWidth="90"/>
-            </columns>
-        </TableView>
+    <stylesheets>
+        <URL value="@/pos/css/modifiermanagement.css"/>
+    </stylesheets>
 
-        <HBox spacing="10">
-            <TextField fx:id="txtName" promptText="Modifier name (e.g. Size)" prefWidth="220"/>
-            <ComboBox fx:id="cmbType" prefWidth="120" promptText="type"/>
-            <CheckBox fx:id="chkRequired" text="Required"/>
-            <Button text="Options..." onAction="#openOptions"/>
-        </HBox>
+    <children>
+        <VBox spacing="12"
+              AnchorPane.topAnchor="16" AnchorPane.leftAnchor="16"
+              AnchorPane.rightAnchor="16" AnchorPane.bottomAnchor="16"
+              styleClass="mm-card">
 
-        <HBox spacing="10">
-            <Button text="Add" onAction="#addModifier"/>
-            <Button text="Update" onAction="#updateModifier"/>
-            <Button text="Delete" onAction="#deleteModifier"/>
-        </HBox>
-    </VBox>
+            <!-- Header -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label fx:id="lblTitle" text="Manage Modifiers" styleClass="mm-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Create modifier groups like Size, Sugar level, Add-ons"
+                       styleClass="mm-subtitle"/>
+            </HBox>
+
+            <!-- Table -->
+            <TableView fx:id="tableView" VBox.vgrow="ALWAYS" styleClass="mm-table">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="70"/>
+                    <TableColumn fx:id="colName" text="Name" prefWidth="280"/>
+                    <TableColumn fx:id="colType" text="Type" prefWidth="140"/>
+                    <TableColumn fx:id="colRequired" text="Required" prefWidth="120"/>
+                </columns>
+            </TableView>
+
+            <!-- Form row -->
+            <GridPane hgap="10" vgap="10" styleClass="mm-form">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="44"/>
+                    <ColumnConstraints percentWidth="22"/>
+                    <ColumnConstraints percentWidth="18"/>
+                    <ColumnConstraints percentWidth="16"/>
+                </columnConstraints>
+
+                <TextField fx:id="txtName" promptText="Modifier name (e.g. Size)" styleClass="mm-field"
+                           GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+
+                <ComboBox fx:id="cmbType" promptText="Type" styleClass="mm-field"
+                          GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <CheckBox fx:id="chkRequired" text="Required" styleClass="mm-check"
+                          GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+                <Button text="Options..." onAction="#openOptions" styleClass="mm-btn-secondary"
+                        GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+            </GridPane>
+
+            <!-- Actions -->
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Delete" onAction="#deleteModifier" styleClass="mm-btn-danger"/>
+                <Button text="Update" onAction="#updateModifier" styleClass="mm-btn-secondary"/>
+                <Button text="Add" onAction="#addModifier" styleClass="mm-btn-primary"/>
+            </HBox>
+
+        </VBox>
+    </children>
 </AnchorPane>

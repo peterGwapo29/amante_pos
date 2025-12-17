@@ -1,39 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefWidth="760" prefHeight="420"
+<AnchorPane prefWidth="860" prefHeight="520"
             xmlns="http://javafx.com/javafx/24.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pos.controller.BundleManagementController">
-        <stylesheets>
-            <URL value="@/pos/css/bundlemanagement.css"/>
-        </stylesheets>
-    <VBox spacing="10" layoutX="15" layoutY="15">
-        <Label fx:id="lblTitle" text="Manage Bundle Items" style="-fx-font-size: 18;"/>
+            fx:controller="pos.controller.BundleManagementController"
+            styleClass="bm-root">
 
-        <TableView fx:id="tableView" prefHeight="240">
-            <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
-                <TableColumn fx:id="colItemName" text="Item Product" prefWidth="320"/>
-                <TableColumn fx:id="colQty" text="Qty" prefWidth="80"/>
-            </columns>
-        </TableView>
+    <stylesheets>
+        <URL value="@/pos/css/bundlemanagement.css"/>
+    </stylesheets>
 
-        <HBox spacing="10">
-            <ComboBox fx:id="cmbProducts" prefWidth="320" promptText="Select product item"/>
-            <TextField fx:id="txtQty" promptText="Qty" prefWidth="80"/>
-        </HBox>
+    <children>
+        <VBox spacing="12"
+              AnchorPane.topAnchor="16" AnchorPane.leftAnchor="16"
+              AnchorPane.rightAnchor="16" AnchorPane.bottomAnchor="16"
+              styleClass="bm-card">
 
-        <HBox spacing="10">
-            <Button text="Add Item" onAction="#addItem"/>
-            <Button text="Update Qty" onAction="#updateQty"/>
-            <Button text="Delete Item" onAction="#deleteItem"/>
-        </HBox>
-    </VBox>
+            <!-- Header -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label fx:id="lblTitle" text="Manage Bundle Items" styleClass="bm-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Add products inside a bundle and set quantity"
+                       styleClass="bm-subtitle"/>
+            </HBox>
+
+            <!-- Table -->
+            <TableView fx:id="tableView" VBox.vgrow="ALWAYS" styleClass="bm-table">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
+                    <TableColumn fx:id="colItemName" text="Item Product" prefWidth="520"/>
+                    <TableColumn fx:id="colQty" text="Qty" prefWidth="120"/>
+                </columns>
+            </TableView>
+
+            <!-- Form row -->
+            <GridPane hgap="10" vgap="10" styleClass="bm-form">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="70"/>
+                    <ColumnConstraints percentWidth="30"/>
+                </columnConstraints>
+
+                <ComboBox fx:id="cmbProducts" promptText="Select product item"
+                          styleClass="bm-field"
+                          GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+
+                <TextField fx:id="txtQty" promptText="Qty"
+                           styleClass="bm-field"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- Actions -->
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Delete Item" onAction="#deleteItem" styleClass="bm-btn-danger"/>
+                <Button text="Update Qty" onAction="#updateQty" styleClass="bm-btn-secondary"/>
+                <Button text="Add Item" onAction="#addItem" styleClass="bm-btn-primary"/>
+            </HBox>
+
+        </VBox>
+    </children>
 </AnchorPane>

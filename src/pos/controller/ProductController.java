@@ -353,4 +353,56 @@ public class ProductController implements Initializable {
             AlertUtil.error("Error", "Failed to deactivate product.");
         }
     }
+    
+    
+    public void showLowStockOnly() {
+    // optional: if you already have status dropdown
+    if (cmbStatus != null) cmbStatus.getSelectionModel().select("Active");
+
+    loadLowStockData();
+}
+
+private void loadLowStockData() {
+    ObservableList<Product> productList = FXCollections.observableArrayList();
+
+    String sql =
+        "SELECT id, name, description, categoryId, supplierId, sku, barcode, " +
+        "inventoryTracking, baseUnit, price, discountPercent, cost, " +
+        "initialStock, currentStock, image, isActive, createdAt " +
+        "FROM product " +
+        "WHERE isActive=1 AND currentStock <= reorderLevel " +
+        "ORDER BY name";
+
+    try (PreparedStatement ps = conn.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+        while (rs.next()) {
+            productList.add(new Product(
+                rs.getInt("id"),
+                rs.getString("name"),
+                rs.getString("description"),
+                rs.getInt("categoryId"),
+                rs.getInt("supplierId"),
+                rs.getString("sku"),
+                rs.getString("barcode"),
+                rs.getString("inventoryTracking"),
+                rs.getString("baseUnit"),
+                rs.getBigDecimal("price"),
+                rs.getBigDecimal("discountPercent"),
+                rs.getBigDecimal("cost"),
+                rs.getInt("initialStock"),
+                rs.getInt("currentStock"),
+                rs.getString("image"),
+                rs.getBoolean("isActive"),
+                rs.getString("productType"),
+                rs.getTimestamp("createdAt")
+            ));
+        }
+
+        tableView.setItems(productList);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
 }
