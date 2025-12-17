@@ -81,42 +81,94 @@ public class TransactionController implements Initializable {
 
         productTable.setItems(products);
         cartTable.setItems(cartItems);
+        
+                // Keep action columns tight
+        pActionCol.setMaxWidth(90);
+        pActionCol.setMinWidth(80);
+        cRemoveCol.setMaxWidth(110);
+        cRemoveCol.setMinWidth(90);
+
+        // Optional: align numeric columns right (cleaner)
+        String right = "-fx-alignment: CENTER-RIGHT;";
+        pPriceCol.setStyle(right);
+        pDiscountCol.setStyle(right);
+        pStockCol.setStyle(right);
+
+        cQtyCol.setStyle("-fx-alignment: CENTER;");
+        cPriceCol.setStyle(right);
+        cDiscCol.setStyle(right);
+        cSubCol.setStyle(right);
+
 
         // product action button
-        pActionCol.setCellFactory(col -> new TableCell<>() {
-            private final Button btn = new Button("Add");
-            {
-                btn.setOnAction(e -> {
-                    ProductRow p = getTableView().getItems().get(getIndex());
-                    Integer qty = askQuantity(p.getName());
-                    if (qty == null) return;
-                    addProductToCartFlow(p, qty);
+//        pActionCol.setCellFactory(col -> new TableCell<>() {
+//            private final Button btn = new Button("Add");
+//            {
+//                btn.setOnAction(e -> {
+//                    ProductRow p = getTableView().getItems().get(getIndex());
+//                    Integer qty = askQuantity(p.getName());
+//                    if (qty == null) return;
+//                    addProductToCartFlow(p, qty);
+//
+//                });
+//            }
+//            @Override protected void updateItem(Void item, boolean empty) {
+//                super.updateItem(item, empty);
+//                setGraphic(empty ? null : btn);
+//            }
+//        });
+            pActionCol.setCellFactory(col -> new TableCell<>() {
+                private final Button btn = new Button("Add");
+                {
+                    btn.getStyleClass().add("table-action-add");  // ✅
+                    btn.setOnAction(e -> {
+                        ProductRow p = getTableView().getItems().get(getIndex());
+                        Integer qty = askQuantity(p.getName());
+                        if (qty == null) return;
+                        addProductToCartFlow(p, qty);
+                    });
+                }
+                @Override protected void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setGraphic(empty ? null : btn);
+                }
+            });
 
-                });
-            }
-            @Override protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : btn);
-            }
-        });
 
         // cart remove button
-        cRemoveCol.setCellFactory(col -> new TableCell<>() {
-            private final Button btn = new Button("X");
-            {
-                btn.setOnAction(e -> {
-                    CartItem item = getTableView().getItems().get(getIndex());
-                    cartItems.remove(item);
-                    cartTable.refresh();
-                    updateTotalAndChange();
-                    AlertUtil.info("Cart", "Item removed.");
-                });
-            }
-            @Override protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : btn);
-            }
+//        cRemoveCol.setCellFactory(col -> new TableCell<>() {
+//            private final Button btn = new Button("X");
+//            {
+//                btn.setOnAction(e -> {
+//                    CartItem item = getTableView().getItems().get(getIndex());
+//                    cartItems.remove(item);
+//                    cartTable.refresh();
+//                    updateTotalAndChange();
+//                    AlertUtil.info("Cart", "Item removed.");
+//                });
+//            }
+//            @Override protected void updateItem(Void item, boolean empty) {
+//                super.updateItem(item, empty);
+//                setGraphic(empty ? null : btn);
+//            }
+//        });
+cRemoveCol.setCellFactory(col -> new TableCell<>() {
+    private final Button btn = new Button("Remove");
+    {
+        btn.getStyleClass().add("table-action-remove"); // ✅
+        btn.setOnAction(e -> {
+            CartItem item = getTableView().getItems().get(getIndex());
+            cartItems.remove(item);
+            cartTable.refresh();
+            updateTotalAndChange();
         });
+    }
+    @Override protected void updateItem(Void item, boolean empty) {
+        super.updateItem(item, empty);
+        setGraphic(empty ? null : btn);
+    }
+});
+
 
         // double click product to add
             productTable.setRowFactory(tv -> {
@@ -557,8 +609,8 @@ public class TransactionController implements Initializable {
                     else ps.setInt(4, item.getVariantId());
 
                     ps.setInt(5, item.getQuantity());
-                    ps.setBigDecimal(6, item.getFinalUnitPrice());        // unit price AFTER modifiers+discount
-                    ps.setBigDecimal(7, item.getDiscountPercent());       // store percent
+                    ps.setBigDecimal(6, item.getFinalUnitPrice());    
+                    ps.setBigDecimal(7, item.getDiscountPercent());      
                     if (item.getModifiersJson() == null) ps.setNull(8, Types.VARCHAR);
                     else ps.setString(8, item.getModifiersJson());
 

@@ -22,11 +22,19 @@ public class Product {
     private String imagePath;
     private boolean isActive;
     private Timestamp createdAt;
+    private BigDecimal discountPercent;
+    private String productType;
 
-    public Product(int id, String name, String description, int categoryId, int supplierId, String sku,
-                   String barcode, String inventoryTracking, String baseUnit,
-                   BigDecimal price, BigDecimal cost, int initialStock, int currentStock,
-                   String imagePath, boolean isActive, Timestamp createdAt) {
+
+    public Product(
+        int id, String name, String description,
+        int categoryId, int supplierId,
+        String sku, String barcode,
+        String inventoryTracking, String baseUnit,
+        BigDecimal price, BigDecimal discountPercent, BigDecimal cost,
+        int initialStock, int currentStock,
+        String imagePath, boolean isActive, String productType, Timestamp createdAt
+    ) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -37,13 +45,16 @@ public class Product {
         this.inventoryTracking = inventoryTracking;
         this.baseUnit = baseUnit;
         this.price = price;
+        this.discountPercent = discountPercent;   // ✅ IMPORTANT
         this.cost = cost;
         this.initialStock = initialStock;
         this.currentStock = currentStock;
         this.imagePath = imagePath;
         this.isActive = isActive;
+        this.productType = productType;
         this.createdAt = createdAt;
     }
+
 
     public int getId() { return id; }
     public String getName() { return name; }
@@ -60,6 +71,13 @@ public class Product {
     public int getCurrentStock() { return currentStock; }
     public boolean getIsActive() { return isActive; }
     public Timestamp getCreatedAt() { return createdAt; }
+    public BigDecimal getDiscountPercent() {
+        return discountPercent;
+    }
+    public String getProductType() {
+    return productType;
+}
+
     
      public String getImagePath() { return imagePath; }
 

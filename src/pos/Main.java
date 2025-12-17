@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class Main extends Application{
 
     public static void main(String[] args) {
-        launch(args);   
+        launch(args);
     }
 
     @Override
@@ -21,7 +21,5 @@ public class Main extends Application{
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.show();
-        
     }
-    
 }

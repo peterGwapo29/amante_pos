@@ -34,6 +34,8 @@ import pos.model.VariantRow;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javafx.scene.control.cell.PropertyValueFactory;
+import pos.model.Product;
+
 
 public class AddProductController implements Initializable {
 
@@ -91,7 +93,9 @@ public class AddProductController implements Initializable {
     @FXML
     private TextField txtDiscount;
 
+    private Integer editingProductId = null;
 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         conn = DBconnection.getConnection();
@@ -201,10 +205,21 @@ public class AddProductController implements Initializable {
 
             String imagesJson = "[\"" + imagePath.replace("\\", "/") + "\"]";
 
-            String sql = "INSERT INTO product "
-                        + "(name, description, categoryId, supplierId, sku, barcode, inventoryTracking, baseUnit, price, discountPercent, cost, "
-                        + "initialStock, currentStock, reorderLevel, productType, image, images, isActive, createdAt, updatedAt) "
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+            boolean isEdit = (editingProductId != null);
+
+            String sql;
+            if (!isEdit) {
+                sql = "INSERT INTO product (name,description,categoryId,supplierId,sku,barcode,inventoryTracking,baseUnit,price,discountPercent,cost,initialStock,currentStock,reorderLevel,productType,image,images,isActive,createdAt,updatedAt) " +
+                      "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),NOW())";
+            } else {
+                sql = "UPDATE product SET name=?, description=?, categoryId=?, supplierId=?, sku=?, barcode=?, inventoryTracking=?, baseUnit=?, price=?, discountPercent=?, cost=?, initialStock=?, reorderLevel=?, productType=?, image=?, images=?, updatedAt=NOW() " +
+                      "WHERE id=?";
+            }
+            
+//            if (isEdit) {
+//                stmt.setInt(18, editingProductId); // adjust index if needed based on your exact sets
+//            
+//            }
 
 
             try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -217,15 +232,24 @@ public class AddProductController implements Initializable {
                 stmt.setString(7, inventoryTracking);
                 stmt.setString(8, baseUnit);
                 stmt.setDouble(9, price);
-                stmt.setDouble(10, discountPercent);
+                stmt.setDouble(10, discountPercent); // ✅ THIS WAS CORRECT
                 stmt.setDouble(11, cost);
                 stmt.setInt(12, initialStock);
-                stmt.setInt(13, initialStock);
-                stmt.setInt(14, reorderLevel);
-                stmt.setString(15, productType);
-                stmt.setString(16, imagePath);
-                stmt.setString(17, imagesJson);
-                stmt.setBoolean(18, isActive);
+
+                if (!isEdit) {
+                    stmt.setInt(13, initialStock); // currentStock
+                    stmt.setInt(14, reorderLevel);
+                    stmt.setString(15, productType);
+                    stmt.setString(16, imagePath);
+                    stmt.setString(17, imagesJson);
+                    stmt.setBoolean(18, true);
+                } else {
+                    stmt.setInt(13, reorderLevel);
+                    stmt.setString(14, productType);
+                    stmt.setString(15, imagePath);
+                    stmt.setString(16, imagesJson);
+                    stmt.setInt(17, editingProductId); // ✅ CORRECT PLACE
+                }
                 
                 int rowsInserted = stmt.executeUpdate();
                 
@@ -374,5 +398,52 @@ public class AddProductController implements Initializable {
 
         AlertUtil.info("Variants Saved", "All variants saved successfully.");
     }
+    
+    public void setEditProduct(Product p) {
+        editingProductId = p.getId();
+
+        txtName.setText(p.getName());
+        txtDescription.setText(p.getDescription());
+        txtSKU.setText(p.getSku());
+        txtBarcode.setText(p.getBarcode());
+        txtBaseUnit.setText(p.getBaseUnit());
+        txtPrice.setText(p.getPrice() != null ? p.getPrice().toString() : "");
+        txtCost.setText(p.getCost() != null ? p.getCost().toString() : "");
+        txtInitialStock.setText(String.valueOf(p.getInitialStock()));
+        txtDiscount.setText(p.getDiscountPercent() != null ? p.getDiscountPercent().toString() : "");
+
+        // ✅ Select ComboBox items by ID
+        selectCategoryById(p.getCategoryId());
+        selectSupplierById(p.getSupplierId());
+
+        // ✅ Select strings
+        cmbInventoryTracking.getSelectionModel().select(p.getInventoryTracking());
+        cmbProductType.getSelectionModel().select(p.getProductType());
+
+        // image
+        lblImageName.setText(p.getImagePath());
+        lblImageName.setUserData(p.getImagePath());
+
+        btnSubmit.setText("Update");
+    }
+
+    private void selectCategoryById(int id) {
+        for (Category c : cmbCategory.getItems()) {
+            if (c.getId() == id) {
+                cmbCategory.getSelectionModel().select(c);
+                return;
+            }
+        }
+    }
+
+    private void selectSupplierById(int id) {
+        for (Supplier s : cmbSupplier.getItems()) {
+            if (s.getId() == id) {
+                cmbSupplier.getSelectionModel().select(s);
+                return;
+            }
+        }
+    }
+
 
 }

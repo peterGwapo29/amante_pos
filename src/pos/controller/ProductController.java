@@ -24,6 +24,9 @@ import pos.model.DBconnection;
 import pos.model.Product;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import pos.CRUD.AddProductController;
 import pos.util.AlertUtil;
@@ -60,13 +63,25 @@ public class ProductController implements Initializable {
     private AnchorPane rootPane;
     @FXML
     private Button addProductButton;
+    @FXML
+    private ComboBox<String> cmbStatus;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadSidebar();
         conn = DBconnection.getConnection();
+        
+        cmbStatus.getItems().addAll(
+            "Active",
+            "Inactive",
+            "All"
+        );
+
+        cmbStatus.getSelectionModel().select("Active");
+
         setupTableColumns();
         loadProductData();
+        cmbStatus.setOnAction(e -> loadProductData());
     }
 
     private void loadSidebar() {
@@ -110,42 +125,58 @@ public class ProductController implements Initializable {
 
     private void loadProductData() {
         ObservableList<Product> productList = FXCollections.observableArrayList();
-        String sql = "SELECT id, name, description, categoryId, supplierId, sku, barcode, "
-                   + "inventoryTracking, baseUnit, price, cost, initialStock, currentStock, "
-                   + "image, isActive, createdAt FROM product";
 
-        try (PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+        String status = cmbStatus.getValue(); // Active / Inactive / All
 
+        String sql =
+            "SELECT id, name, description, categoryId, supplierId, sku, barcode, " +
+            "inventoryTracking, baseUnit, price, discountPercent, cost, " +
+            "initialStock, currentStock, image, isActive, productType, createdAt " +
+            "FROM product ";
+
+        if (!"All".equals(status)) {
+            sql += "WHERE isActive = ? ";
+        }
+
+        sql += "ORDER BY name";
+
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            if (!"All".equals(status)) {
+                ps.setBoolean(1, "Active".equals(status));
+            }
+
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Product product = new Product(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getInt("categoryId"),
-                        rs.getInt("supplierId"),
-                        rs.getString("sku"),
-                        rs.getString("barcode"),
-                        rs.getString("inventoryTracking"),
-                        rs.getString("baseUnit"),
-                        rs.getBigDecimal("price"),
-                        rs.getBigDecimal("cost"),
-                        rs.getInt("initialStock"),
-                        rs.getInt("currentStock"),
-                        rs.getString("image"),
-                        rs.getBoolean("isActive"),
-                        rs.getTimestamp("createdAt")
-                );
-                productList.add(product);
+                productList.add(new Product(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("description"),
+                    rs.getInt("categoryId"),
+                    rs.getInt("supplierId"),
+                    rs.getString("sku"),
+                    rs.getString("barcode"),
+                    rs.getString("inventoryTracking"),
+                    rs.getString("baseUnit"),
+                    rs.getBigDecimal("price"),
+                    rs.getBigDecimal("discountPercent"),
+                    rs.getBigDecimal("cost"),
+                    rs.getInt("initialStock"),
+                    rs.getInt("currentStock"),
+                    rs.getString("image"),
+                    rs.getBoolean("isActive"),
+                    rs.getString("productType"),
+                    rs.getTimestamp("createdAt")
+                ));
             }
 
             tableView.setItems(productList);
+
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error loading products: " + e.getMessage());
         }
     }
-
+    
     @FXML
     private void addProductModal(ActionEvent event) throws IOException {
         try {
@@ -264,4 +295,62 @@ public class ProductController implements Initializable {
         }
     }
 
+    @FXML
+    private void updateProduct(ActionEvent event) {
+        Product p = tableView.getSelectionModel().getSelectedItem();
+        if (p == null) {
+            AlertUtil.warning("No Product Selected", "Please select a product to update.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pos/modal/AddProductModal.fxml"));
+            Parent root = loader.load();
+
+            AddProductController c = loader.getController();
+            c.setProductController(this);
+
+            // IMPORTANT: you must create this method in AddProductController
+            c.setEditProduct(p);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertUtil.error("Error", "Unable to open update modal.\n" + e.getMessage());
+        }
+    }
+
+
+    @FXML
+    private void deleteProduct() {
+
+        Product p = tableView.getSelectionModel().getSelectedItem();
+        if (p == null) {
+            AlertUtil.warning("No Selection", "Please select a product.");
+            return;
+        }
+
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
+                "Deactivate this product?\n\nProduct will no longer appear in POS.",
+                ButtonType.YES, ButtonType.NO);
+
+        if (confirm.showAndWait().orElse(ButtonType.NO) != ButtonType.YES) return;
+
+        String sql = "UPDATE product SET isActive=0, updatedAt=NOW() WHERE id=?";
+
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, p.getId());
+            ps.executeUpdate();
+
+            AlertUtil.info("Deactivated", "Product has been deactivated.");
+            reloadTable();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertUtil.error("Error", "Failed to deactivate product.");
+        }
+    }
 }

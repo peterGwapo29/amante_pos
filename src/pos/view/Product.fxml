@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.ComboBox?>
 
 <AnchorPane fx:id="rootPane" prefHeight="800.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pos.controller.ProductController">
 
@@ -35,6 +36,11 @@
                 </Label>
             </children>
         </HBox>
+        
+        <ComboBox fx:id="cmbStatus"
+          promptText="Status"
+          prefWidth="150"/>
+
 
         <!-- Product table -->
         <TableView fx:id="tableView" layoutX="270.0" layoutY="140.0" prefHeight="500.0" prefWidth="1178.0">
@@ -71,6 +77,8 @@
                 <Button layoutX="720.0" layoutY="80.0" onAction="#openVariantManager" text="Manage Variants" />
                 <Button layoutX="860.0" layoutY="80.0" onAction="#openModifierManager" text="Manage Modifiers" />
                 <Button layoutX="1010.0" layoutY="80.0" onAction="#openBundleManager" text="Manage Bundle" />
+                <Button text="Update Product" onAction="#updateProduct" />
+                <Button text="Delete Product" onAction="#deleteProduct" />
 
          </children>
          <padding>

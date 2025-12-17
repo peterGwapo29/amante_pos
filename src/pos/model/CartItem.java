@@ -1,6 +1,7 @@
 package pos.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class CartItem {
     private final int productId;
@@ -55,9 +56,22 @@ public class CartItem {
         BigDecimal unit = basePrice.add(modifierExtra);
         BigDecimal disc = unit.multiply(discountPercent).divide(BigDecimal.valueOf(100));
         return unit.subtract(disc);
+//        return basePrice.add(modifierExtra);
     }
 
     public BigDecimal getLineTotal() {
         return getFinalUnitPrice().multiply(BigDecimal.valueOf(quantity));
+//    BigDecimal subtotal = getFinalUnitPrice().multiply(BigDecimal.valueOf(quantity));
+//
+//       BigDecimal disc = subtotal.multiply(discountPercent)
+//               .divide(BigDecimal.valueOf(100), 4, RoundingMode.HALF_UP);
+//
+//       return subtotal.subtract(disc);
     }
+    
+    public BigDecimal getDiscountAmount() {
+        BigDecimal subtotal = getFinalUnitPrice().multiply(BigDecimal.valueOf(quantity));
+        return subtotal.multiply(discountPercent).divide(BigDecimal.valueOf(100));
+    }
+
 }

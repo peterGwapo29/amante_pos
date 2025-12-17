@@ -1,6 +1,83 @@
+.root{
+    -fx-background-color: #0f172a;
+    -fx-font-family: "Arial";
+}
 
-#SignupButton{
-    -fx-background-color: #076312;
+.content{
+    -fx-padding: 28;
+}
+
+.accent-circle{
+    -fx-fill: #1b3ed9;
+    -fx-opacity: 0.35;
+}
+
+.title{
+    -fx-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.subtitle{
+    -fx-fill: rgba(255,255,255,0.70);
+    -fx-font-size: 13px;
+}
+
+.card{
+    -fx-background-color: rgba(255,255,255,0.08);
+    -fx-background-radius: 16;
+    -fx-padding: 22;
+    -fx-border-color: rgba(255,255,255,0.10);
+    -fx-border-radius: 16;
+}
+
+.field-label{
+    -fx-text-fill: rgba(255,255,255,0.80);
+    -fx-font-size: 13px;
+}
+
+.field{
+    -fx-background-color: rgba(255,255,255,0.12);
+    -fx-background-radius: 10;
     -fx-text-fill: white;
+    -fx-prompt-text-fill: rgba(255,255,255,0.50);
+    -fx-padding: 10 12 10 12;
+    -fx-border-color: rgba(255,255,255,0.12);
+    -fx-border-radius: 10;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.field:focused{
+    -fx-border-color: #f2b807; /* same focus color as login */
+}
+
+.primary-button{
+    -fx-background-color: #f2b807;
+    -fx-text-fill: #111827;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
     -fx-cursor: hand;
+}
+
+.primary-button:hover{
+    -fx-background-color: #ffd54a;
+}
+
+.primary-button:pressed{
+    -fx-background-color: #e0aa00;
+}
+
+.muted-text{
+    -fx-fill: rgba(255,255,255,0.70);
+    -fx-font-size: 13px;
+}
+
+.link{
+    -fx-text-fill: #ffd54a;
+    -fx-font-size: 13px;
+}
+
+.link:hover{
+    -fx-underline: true;
 }

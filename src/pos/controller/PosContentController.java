@@ -58,9 +58,14 @@ public class PosContentController implements Initializable {
 
     private void loadProducts(String keyword) {
         products.clear();
+        
+        
         String sql =
-            "SELECT id,name,description,categoryId,supplierId,sku,barcode,inventoryTracking,baseUnit,price,cost,initialStock,currentStock,image,isActive,createdAt " +
+            "SELECT id,name,description,categoryId,supplierId,sku,barcode,inventoryTracking,baseUnit," +
+            "price,discountPercent,cost,initialStock,currentStock,image,isActive,createdAt " +
             "FROM product WHERE isActive=1 AND (name LIKE ? OR sku LIKE ? OR barcode LIKE ?) ORDER BY name";
+
+
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             String like = "%" + keyword + "%";
@@ -81,11 +86,13 @@ public class PosContentController implements Initializable {
                         rs.getString("inventoryTracking"),
                         rs.getString("baseUnit"),
                         rs.getBigDecimal("price"),
+                        rs.getBigDecimal("discountPercent"),
                         rs.getBigDecimal("cost"),
                         rs.getInt("initialStock"),
                         rs.getInt("currentStock"),
                         rs.getString("image"),
                         rs.getBoolean("isActive"),
+                        rs.getString("productType"),
                         rs.getTimestamp("createdAt")
                     ));
                 }
