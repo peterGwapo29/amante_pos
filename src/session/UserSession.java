@@ -5,6 +5,7 @@ public class UserSession {
 
     private static String email;
     private static String role;
+    private static String activeMenu;
 
     private UserSession() {}
 
@@ -24,5 +25,13 @@ public class UserSession {
     public static void clearSession() {
         email = null;
         role = null;
+    }
+    
+    public static String getActiveMenu() {
+        return activeMenu;
+    }
+
+    public static void setActiveMenu(String menu) {
+        activeMenu = menu;
     }
 }

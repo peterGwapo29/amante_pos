@@ -31,8 +31,6 @@
         <StackPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                    pickOnBounds="false" mouseTransparent="true">
-            <Circle styleClass="accent-circle"
-                    translateX="-320" translateY="-190" radius="180"/>
         </StackPane>
 
         <!-- Content -->

@@ -2,122 +2,153 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.control.ScrollPane?>
 
-<AnchorPane fx:id="rootPane" prefHeight="730.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pos.CRUD.AddProductController">
-    
+<AnchorPane fx:id="rootPane" prefHeight="730.0" prefWidth="770.0"
+            xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pos.CRUD.AddProductController"
+            styleClass="ap-root">
+
     <stylesheets>
-        <URL value="@/pos/css/addProduct.css" />
+        <URL value="@/pos/css/addProduct.css"/>
     </stylesheets>
-    
-    <BorderPane prefHeight="720.0" prefWidth="820.0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
-                AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+    <BorderPane prefHeight="720.0" prefWidth="820.0"
+                AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+                styleClass="ap-shell">
 
         <!-- Header -->
         <top>
-            <VBox alignment="CENTER" spacing="8" style="-fx-padding: 12;">
-                <Label text="Add New Product">
+            <VBox spacing="6" styleClass="ap-topbar">
+                <padding>
+                    <Insets top="14" right="16" bottom="12" left="16"/>
+                </padding>
+
+                <Label text="Add New Product" styleClass="ap-title">
                     <font>
                         <Font name="Arial Bold" size="16.0"/>
                     </font>
                 </Label>
-                <Line endX="650" />
+
+                <Label text="Fill in product details, variants, and stock information."
+                       styleClass="ap-subtitle"/>
+
             </VBox>
         </top>
 
         <!-- Scrollable content -->
         <center>
-            <ScrollPane fitToWidth="true" style="-fx-background-color:transparent;">
+            <ScrollPane fitToWidth="true" styleClass="ap-scroll">
                 <content>
-                    <VBox spacing="18" style="-fx-padding: 20;">
+                    <VBox spacing="14" styleClass="ap-content">
+                        <padding>
+                            <Insets top="16" right="16" bottom="16" left="16"/>
+                        </padding>
 
-                        <!-- FORM -->
-                        <GridPane hgap="16" vgap="12">
-                            <columnConstraints>
-                                <ColumnConstraints minWidth="140" />
-                                <ColumnConstraints hgrow="ALWAYS" />
-                            </columnConstraints>
+                        <!-- Card: Product Details -->
+                        <VBox spacing="12" styleClass="ap-card">
+                            <Label text="Product Details" styleClass="ap-section-title"/>
 
-                            <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                            <TextField fx:id="txtName" promptText="Product Name" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                            <GridPane hgap="16" vgap="12">
+                                <columnConstraints>
+                                    <ColumnConstraints minWidth="150"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
 
-                            <Label text="Description:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                            <TextArea fx:id="txtDescription" promptText="Product Description" prefRowCount="3"
-                                      GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                <Label text="Name:" styleClass="ap-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                <TextField fx:id="txtName" promptText="Product Name"
+                                           styleClass="ap-field"
+                                           GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                            <Label text="Category:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                            <ComboBox fx:id="cmbCategory" promptText="Select Category"
-                                      GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                                <Label text="Description:" styleClass="ap-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                <TextArea fx:id="txtDescription" promptText="Product Description" prefRowCount="3"
+                                          styleClass="ap-area"
+                                          GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-                            <Label text="Supplier:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                            <ComboBox fx:id="cmbSupplier" promptText="Select Supplier"
-                                      GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                                <Label text="Category:" styleClass="ap-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                <ComboBox fx:id="cmbCategory" promptText="Select Category"
+                                          styleClass="ap-field"
+                                          GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-                            <Label text="SKU:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                            <TextField fx:id="txtSKU" promptText="SKU" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                                <Label text="Supplier:" styleClass="ap-label" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                                <ComboBox fx:id="cmbSupplier" promptText="Select Supplier"
+                                          styleClass="ap-field"
+                                          GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-                            <Label text="Barcode:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-                            <TextField fx:id="txtBarcode" promptText="Barcode" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                                <Label text="SKU:" styleClass="ap-label" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                                <TextField fx:id="txtSKU" promptText="SKU"
+                                           styleClass="ap-field"
+                                           GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
-                            <Label text="Inventory Tracking:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-                            <ComboBox fx:id="cmbInventoryTracking" promptText="Select Track"
-                                      GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+                                <Label text="Barcode:" styleClass="ap-label" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                                <TextField fx:id="txtBarcode" promptText="Barcode"
+                                           styleClass="ap-field"
+                                           GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
-                            <Label text="Base Unit:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-                            <TextField fx:id="txtBaseUnit" promptText="e.g. piece, box" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+                                <Label text="Inventory Tracking:" styleClass="ap-label" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                                <ComboBox fx:id="cmbInventoryTracking" promptText="Select Track"
+                                          styleClass="ap-field"
+                                          GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
-                            <Label text="Price:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
-                            <TextField fx:id="txtPrice" promptText="0.00" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+                                <Label text="Base Unit:" styleClass="ap-label" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                                <TextField fx:id="txtBaseUnit" promptText="e.g. piece, box"
+                                           styleClass="ap-field"
+                                           GridPane.rowIndex="7" GridPane.columnIndex="1"/>
 
-                            <Label text="Discount (%):" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
-                            <TextField fx:id="txtDiscount" promptText="0.00" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+                                <Label text="Price:" styleClass="ap-label" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                                <TextField fx:id="txtPrice" promptText="0.00"
+                                           styleClass="ap-field"
+                                           GridPane.rowIndex="8" GridPane.columnIndex="1"/>
 
-                            <Label text="Cost:" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
-                            <TextField fx:id="txtCost" promptText="0.00" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
+                                <Label text="Discount (%):" styleClass="ap-label" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+                                <TextField fx:id="txtDiscount" promptText="0.00"
+                                           styleClass="ap-field"
+                                           GridPane.rowIndex="9" GridPane.columnIndex="1"/>
 
-                            <Label text="Initial Stock:" GridPane.rowIndex="11" GridPane.columnIndex="0"/>
-                            <TextField fx:id="txtInitialStock" promptText="0" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
+                                <Label text="Cost:" styleClass="ap-label" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+                                <TextField fx:id="txtCost" promptText="0.00"
+                                           styleClass="ap-field"
+                                           GridPane.rowIndex="10" GridPane.columnIndex="1"/>
 
-                            <Label text="Reorder Level:" GridPane.rowIndex="12" GridPane.columnIndex="0"/>
-                            <TextField fx:id="txtReorderLevel" promptText="0" GridPane.rowIndex="12" GridPane.columnIndex="1"/>
+                                <Label text="Initial Stock:" styleClass="ap-label" GridPane.rowIndex="11" GridPane.columnIndex="0"/>
+                                <TextField fx:id="txtInitialStock" promptText="0"
+                                           styleClass="ap-field"
+                                           GridPane.rowIndex="11" GridPane.columnIndex="1"/>
 
-                            <Label text="Product Type:" GridPane.rowIndex="13" GridPane.columnIndex="0"/>
-                            <ComboBox fx:id="cmbProductType" promptText="Select Product Type"
-                                      GridPane.rowIndex="13" GridPane.columnIndex="1"/>
+                                <Label text="Reorder Level:" styleClass="ap-label" GridPane.rowIndex="12" GridPane.columnIndex="0"/>
+                                <TextField fx:id="txtReorderLevel" promptText="0"
+                                           styleClass="ap-field"
+                                           GridPane.rowIndex="12" GridPane.columnIndex="1"/>
 
-                            <Label text="Image:" GridPane.rowIndex="14" GridPane.columnIndex="0"/>
-                            <HBox spacing="10" alignment="CENTER_LEFT" GridPane.rowIndex="14" GridPane.columnIndex="1">
-                                <Button fx:id="btnUploadImage" onAction="#handleUploadImage" text="Upload Image"/>
-                                <Label fx:id="lblImageName" text="No file selected"/>
+                                <Label text="Product Type:" styleClass="ap-label" GridPane.rowIndex="13" GridPane.columnIndex="0"/>
+                                <ComboBox fx:id="cmbProductType" promptText="Select Product Type"
+                                          styleClass="ap-field"
+                                          GridPane.rowIndex="13" GridPane.columnIndex="1"/>
+
+                                <Label text="Image:" styleClass="ap-label" GridPane.rowIndex="14" GridPane.columnIndex="0"/>
+                                <HBox spacing="10" alignment="CENTER_LEFT"
+                                      GridPane.rowIndex="14" GridPane.columnIndex="1">
+                                    <Button fx:id="btnUploadImage" onAction="#handleUploadImage"
+                                            text="Upload Image" styleClass="ap-btn-secondary"/>
+                                    <Label fx:id="lblImageName" text="No file selected" styleClass="ap-muted"/>
+                                </HBox>
+                            </GridPane>
+                        </VBox>
+
+                        <!-- Card: Variants -->
+                        <VBox spacing="12" styleClass="ap-card">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Variants" styleClass="ap-section-title"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="(Variable products only)" styleClass="ap-muted"/>
                             </HBox>
 
-                        </GridPane>
-
-                        <Separator/>
-
-                        <!-- VARIANTS -->
-                        <VBox spacing="10">
-                            <Label text="Variants (variable products only)" style="-fx-font-weight: bold;"/>
-
-                            <TableView fx:id="variantTable" prefHeight="160">
+                            <TableView fx:id="variantTable" prefHeight="170" styleClass="ap-table">
                                 <columns>
                                     <TableColumn fx:id="vNameCol" text="Name" prefWidth="140"/>
                                     <TableColumn fx:id="vSkuCol" text="SKU" prefWidth="90"/>
@@ -129,7 +160,7 @@
                                 </columns>
                             </TableView>
 
-                            <GridPane hgap="10" vgap="10">
+                            <GridPane hgap="10" vgap="10" styleClass="ap-variant-grid">
                                 <columnConstraints>
                                     <ColumnConstraints percentWidth="22"/>
                                     <ColumnConstraints percentWidth="12"/>
@@ -140,19 +171,27 @@
                                     <ColumnConstraints percentWidth="18"/>
                                 </columnConstraints>
 
-                                <TextField fx:id="vTxtName" promptText="Variant name" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                                <TextField fx:id="vTxtSku" promptText="SKU" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-                                <TextField fx:id="vTxtBarcode" promptText="Barcode" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-                                <TextField fx:id="vTxtPrice" promptText="Price" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-                                <TextField fx:id="vTxtCost" promptText="Cost" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
-                                <TextField fx:id="vTxtStock" promptText="Stock" GridPane.rowIndex="0" GridPane.columnIndex="5"/>
+                                <TextField fx:id="vTxtName" promptText="Variant name" styleClass="ap-field"
+                                           GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                <TextField fx:id="vTxtSku" promptText="SKU" styleClass="ap-field"
+                                           GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                <TextField fx:id="vTxtBarcode" promptText="Barcode" styleClass="ap-field"
+                                           GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                <TextField fx:id="vTxtPrice" promptText="Price" styleClass="ap-field"
+                                           GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                                <TextField fx:id="vTxtCost" promptText="Cost" styleClass="ap-field"
+                                           GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+                                <TextField fx:id="vTxtStock" promptText="Stock" styleClass="ap-field"
+                                           GridPane.rowIndex="0" GridPane.columnIndex="5"/>
 
-                                <HBox spacing="10" alignment="CENTER_LEFT" GridPane.rowIndex="0" GridPane.columnIndex="6">
-                                    <CheckBox fx:id="vChkActive" text="Active" selected="true"/>
-                                    <Button text="Add" onAction="#addVariantRow"/>
-                                    <Button text="Remove" onAction="#removeVariantRow"/>
+                                <HBox spacing="10" alignment="CENTER_LEFT"
+                                      GridPane.rowIndex="0" GridPane.columnIndex="6">
+                                    <CheckBox fx:id="vChkActive" text="Active" selected="true" styleClass="ap-check"/>
+                                    <Button text="Add" onAction="#addVariantRow" styleClass="ap-btn-primary"/>
+                                    <Button text="Remove" onAction="#removeVariantRow" styleClass="ap-btn-danger"/>
                                 </HBox>
                             </GridPane>
+
                         </VBox>
 
                     </VBox>
@@ -160,13 +199,16 @@
             </ScrollPane>
         </center>
 
-        <!-- Footer (fixed submit button) -->
+        <!-- Footer -->
         <bottom>
-            <HBox alignment="CENTER" style="-fx-padding: 14; -fx-background-color: #f4f7fa;">
+            <HBox alignment="CENTER" styleClass="ap-footer">
+                <padding>
+                    <Insets top="12" right="14" bottom="12" left="14"/>
+                </padding>
                 <Button fx:id="btnSubmit" onAction="#handleProductSubmit"
-                        prefWidth="420" prefHeight="38"
-                        style="-fx-background-color: #940857; -fx-text-fill: white; -fx-font-size: 14;"
-                        text="Submit"/>
+                        prefWidth="420" prefHeight="40"
+                        text="Submit"
+                        styleClass="ap-submit"/>
             </HBox>
         </bottom>
 

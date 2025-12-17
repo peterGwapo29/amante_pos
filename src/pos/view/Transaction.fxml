@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane fx:id="transactionBody"
@@ -29,25 +31,25 @@
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
               styleClass="content">
 
-            <!-- Top bar -->
+            <!-- Shopee-like top bar -->
             <HBox alignment="CENTER_LEFT" spacing="12" styleClass="topbar">
                 <Label text="Transaction" styleClass="title"/>
-                <HBox HBox.hgrow="ALWAYS"/>
-                <Button text="Logout" onAction="#handleLogout" styleClass="btn-ghost"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Logout" onAction="#handleLogout" styleClass="btn-topbar"/>
             </HBox>
 
             <SplitPane dividerPositions="0.64" VBox.vgrow="ALWAYS" styleClass="splitpane">
 
-                <!-- LEFT -->
+                <!-- LEFT: Products -->
                 <VBox spacing="12" styleClass="panel">
                     <HBox alignment="CENTER_LEFT" spacing="10">
                         <Label text="Products" styleClass="section-title"/>
-                        <HBox HBox.hgrow="ALWAYS"/>
+                        <Region HBox.hgrow="ALWAYS"/>
                         <TextField fx:id="txtSearch"
-                                   promptText="Search products…"
+                                   promptText="Search products..."
                                    onKeyReleased="#searchProducts"
                                    styleClass="field"
-                                   maxWidth="340"/>
+                                   maxWidth="360"/>
                     </HBox>
 
                     <TableView fx:id="productTable" VBox.vgrow="ALWAYS" styleClass="table">
@@ -66,7 +68,7 @@
                     </TableView>
                 </VBox>
 
-                <!-- RIGHT -->
+                <!-- RIGHT: Cart -->
                 <VBox spacing="12" styleClass="panel">
                     <HBox alignment="CENTER_LEFT">
                         <Label text="Cart" styleClass="section-title"/>
@@ -107,8 +109,8 @@
                                        promptText="0.00"
                                        onKeyReleased="#computeChange"
                                        styleClass="field"
-                                       prefWidth="160"/>
-                            <HBox HBox.hgrow="ALWAYS"/>
+                                       prefWidth="170"/>
+                            <Region HBox.hgrow="ALWAYS"/>
                             <Label text="Change" styleClass="muted"/>
                             <Label fx:id="lblChange" text="0.00" styleClass="value"/>
                         </HBox>
@@ -121,7 +123,9 @@
                     </VBox>
 
                 </VBox>
+
             </SplitPane>
         </VBox>
     </children>
 </AnchorPane>
+

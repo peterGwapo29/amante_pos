@@ -1,50 +1,200 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.Region?>
 
-<AnchorPane fx:id="rootPane" prefHeight="800.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pos.controller.DashboardController">
+<AnchorPane fx:id="rootPane" prefHeight="800.0" prefWidth="1440.0" styleClass="page-root" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pos.controller.DashboardController">
 
     <stylesheets>
         <URL value="@/pos/css/dashboard.css" />
     </stylesheets>
 
     <children>
-        <!-- Sidebar Placeholder -->
+        <!-- Sidebar Placeholder (fx:id unchanged) -->
         <AnchorPane fx:id="sidebarContainer" layoutX="0.0" layoutY="0.0" prefHeight="800.0" prefWidth="250.0" />
 
-        <!-- Dashboard Content -->
-        <Rectangle arcWidth="5.0" fill="#f4f7fa" height="705.0" layoutX="250.0" layoutY="71.0" strokeWidth="0.0" width="1178.0" />
+        <!-- Background -->
+        <Rectangle fill="#f5f5f5" height="800.0" layoutX="250.0" layoutY="0.0" strokeWidth="0.0" width="1190.0" />
 
-        <!-- Top Header -->
-        <HBox alignment="CENTER_LEFT" layoutX="250.0" layoutY="5.0" prefHeight="70.0" prefWidth="1190.0" spacing="6.0">
-            <children>
-                <Label style="-fx-font-family: Poppins;" text="Welcome,">
-                    <font>
-                        <Font name="Arial" size="24.0" />
-                    </font>
-                </Label>
-                <Label fx:id="adminName" text="Admin Name">
-                    <font>
-                        <Font name="Arial" size="24.0" />
-                    </font>
-                </Label>
-            <Label fx:id="roleText" text="(Role)">
-               <font>
-                  <Font name="Arial" size="24.0" />
-               </font>
+        <!-- Shopee Top Header -->
+        <HBox alignment="CENTER_LEFT" layoutX="250.0" layoutY="0.0" prefHeight="78.0" prefWidth="1190.0" spacing="6.0" styleClass="topbar">
+            <padding>
+                <Insets bottom="0" left="18" right="18" top="0" />
+            </padding>
+
+            <Label styleClass="topbar-title" text="Welcome,">
+                <font><Font name="Arial" size="20.0" /></font>
             </Label>
-            </children>
+
+            <Label fx:id="adminName" styleClass="topbar-title-strong" text="Admin Name">
+                <font><Font name="Arial" size="20.0" /></font>
+            </Label>
+
+            <Label fx:id="roleText" styleClass="topbar-title-muted" text="(Role)">
+                <font><Font name="Arial" size="20.0" /></font>
+            </Label>
         </HBox>
 
-        <!-- Example Dashboard Main Area -->
-        <AnchorPane fx:id="contentArea" layoutX="250.0" layoutY="80.0" prefHeight="700.0" prefWidth="1190.0" style="-fx-background-color: #FAF6F0;">
-         <children>
-            <Label layoutX="510.0" layoutY="304.0" text="Dashboard" />
-         </children></AnchorPane>
+        <!-- Content Area (fx:id unchanged) -->
+        <AnchorPane fx:id="contentArea" layoutX="250.0" layoutY="88.0" prefHeight="700.0" prefWidth="1190.0" styleClass="content-area">
+
+            <children>
+
+                <!-- Overview title -->
+                <Label layoutX="18.0" layoutY="14.0" styleClass="section-title" text="Overview" />
+
+                <!-- Cards row -->
+                <HBox layoutX="18.0" layoutY="52.0" spacing="12.0">
+
+                    <!-- Card 1 -->
+                    <VBox prefWidth="280.0" spacing="6" styleClass="card">
+                        <padding><Insets bottom="14" left="14" right="14" top="14" /></padding>
+                        <Label styleClass="card-label" text="Total Sales (Today)" />
+                        <Label styleClass="card-value" text="₱ 0.00" />
+                        <Label styleClass="card-sub" text="+0% vs yesterday" />
+                    </VBox>
+
+                    <!-- Card 2 -->
+                    <VBox prefWidth="280.0" spacing="6" styleClass="card">
+                        <padding><Insets bottom="14" left="14" right="14" top="14" /></padding>
+                        <Label styleClass="card-label" text="Transactions" />
+                        <Label styleClass="card-value" text="0" />
+                        <Label styleClass="card-sub" text="Today" />
+                    </VBox>
+
+                    <!-- Card 3 -->
+                    <VBox prefWidth="280.0" spacing="6" styleClass="card">
+                        <padding><Insets bottom="14" left="14" right="14" top="14" /></padding>
+                        <Label styleClass="card-label" text="Items Sold" />
+                        <Label styleClass="card-value" text="0" />
+                        <Label styleClass="card-sub" text="Today" />
+                    </VBox>
+
+                    <!-- Card 4 (accent) -->
+                    <VBox prefWidth="280.0" spacing="6" styleClass="card card-accent">
+                        <padding><Insets bottom="14" left="14" right="14" top="14" /></padding>
+                        <Label styleClass="card-label" text="Low Stock Alerts" />
+                        <Label styleClass="card-value-accent" text="0" />
+                        <Label styleClass="card-sub" text="Needs restock" />
+                    </VBox>
+                </HBox>
+                
+                <!-- Section: Quick Actions -->
+<Label layoutX="18.0" layoutY="170.0" text="Quick Actions" styleClass="section-title"/>
+
+<HBox layoutX="18.0" layoutY="206.0" spacing="12.0">
+    <VBox prefWidth="280.0" spacing="8" styleClass="action-card">
+        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+        <Label text="New Transaction" styleClass="action-title"/>
+        <Label text="Open the POS checkout screen." styleClass="action-sub"/>
+        <Label text="Shortcut: F1" styleClass="action-hint"/>
+    </VBox>
+
+    <VBox prefWidth="280.0" spacing="8" styleClass="action-card">
+        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+        <Label text="Add Product" styleClass="action-title"/>
+        <Label text="Create a new product quickly." styleClass="action-sub"/>
+        <Label text="Shortcut: F2" styleClass="action-hint"/>
+    </VBox>
+
+    <VBox prefWidth="280.0" spacing="8" styleClass="action-card">
+        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+        <Label text="View Reports" styleClass="action-title"/>
+        <Label text="See sales summary and export CSV." styleClass="action-sub"/>
+        <Label text="Shortcut: F3" styleClass="action-hint"/>
+    </VBox>
+
+    <VBox prefWidth="280.0" spacing="8" styleClass="action-card action-card-accent">
+        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+        <Label text="Low Stock List" styleClass="action-title"/>
+        <Label text="Review items that need restock." styleClass="action-sub"/>
+        <Label text="Suggested action" styleClass="action-hint"/>
+    </VBox>
+</HBox>
+
+<!-- Section: Today Snapshot -->
+<Label layoutX="18.0" layoutY="330.0" text="Today Snapshot" styleClass="section-title"/>
+
+<HBox layoutX="18.0" layoutY="366.0" spacing="12.0">
+
+    <!-- Left: Top products -->
+    <VBox prefWidth="580.0" prefHeight="230.0" spacing="10" styleClass="card">
+        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Top Selling Products" styleClass="panel-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Today" styleClass="pill"/>
+        </HBox>
+
+        <!-- Simple list rows (no fx:id needed) -->
+        <VBox spacing="8">
+            <HBox styleClass="list-row">
+                <Label text="1. Product A" styleClass="list-left"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="12 sold" styleClass="list-right"/>
+            </HBox>
+            <HBox styleClass="list-row">
+                <Label text="2. Product B" styleClass="list-left"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="9 sold" styleClass="list-right"/>
+            </HBox>
+            <HBox styleClass="list-row">
+                <Label text="3. Product C" styleClass="list-left"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="7 sold" styleClass="list-right"/>
+            </HBox>
+            <HBox styleClass="list-row">
+                <Label text="4. Product D" styleClass="list-left"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="5 sold" styleClass="list-right"/>
+            </HBox>
+        </VBox>
+    </VBox>
+
+    <!-- Right: Alerts -->
+    <VBox prefWidth="580.0" prefHeight="230.0" spacing="10" styleClass="card card-accent">
+        <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Alerts" styleClass="panel-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Action Needed" styleClass="pill pill-accent"/>
+        </HBox>
+
+        <VBox spacing="8">
+            <HBox styleClass="alert-row">
+                <Label text="Low stock:" styleClass="alert-label"/>
+                <Label text="3 items below minimum" styleClass="alert-value"/>
+            </HBox>
+            <HBox styleClass="alert-row">
+                <Label text="Out of stock:" styleClass="alert-label"/>
+                <Label text="1 item" styleClass="alert-value"/>
+            </HBox>
+            <HBox styleClass="alert-row">
+                <Label text="Pending updates:" styleClass="alert-label"/>
+                <Label text="2 products missing barcode" styleClass="alert-value"/>
+            </HBox>
+            <HBox styleClass="alert-row">
+                <Label text="Tip:" styleClass="alert-label"/>
+                <Label text="Check reports for best sellers" styleClass="alert-value"/>
+            </HBox>
+        </VBox>
+    </VBox>
+
+</HBox>
+
+                
+
+            </children>
+        </AnchorPane>
+
     </children>
 </AnchorPane>

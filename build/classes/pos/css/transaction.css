@@ -1,137 +1,141 @@
 .root{
     -fx-font-family: "Segoe UI", "Inter", "Arial";
-    -fx-background-color: #0b1220;
+    -fx-background-color: #f5f5f5;
 }
 
 .content{
     -fx-padding: 18;
 }
 
-/* Top */
+/* Topbar (Shopee-like) */
 .topbar{
-    -fx-padding: 6 4 10 4;
+    -fx-background-color: #ee4d2d;
+    -fx-background-radius: 12;
+    -fx-padding: 12 14 12 14;
 }
 .title{
     -fx-text-fill: white;
-    -fx-font-size: 22px;
+    -fx-font-size: 20px;
     -fx-font-weight: 800;
+}
+.btn-topbar{
+    -fx-background-color: rgba(255,255,255,0.18);
+    -fx-text-fill: white;
+    -fx-font-weight: 800;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-padding: 8 14 8 14;
+}
+.btn-topbar:hover{ -fx-background-color: rgba(255,255,255,0.26); }
+
+/* Panels (cards) */
+.panel{
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 14;
+    -fx-border-color: rgba(0,0,0,0.06);
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 18, 0.18, 0, 4);
 }
 
 .section-title{
-    -fx-text-fill: rgba(255,255,255,0.92);
+    -fx-text-fill: #111827;
     -fx-font-size: 14px;
-    -fx-font-weight: 700;
+    -fx-font-weight: 800;
 }
 
-/* Panels */
-.panel{
-    -fx-background-color: rgba(255,255,255,0.05);
-    -fx-background-radius: 18;
-    -fx-padding: 14;
-    -fx-border-color: rgba(255,255,255,0.08);
-    -fx-border-radius: 18;
-}
-
-/* Summary area */
+/* Summary card */
 .summary{
-    -fx-background-color: rgba(255,255,255,0.04);
-    -fx-background-radius: 14;
+    -fx-background-color: #fff7f5;
+    -fx-background-radius: 12;
     -fx-padding: 12;
-    -fx-border-color: rgba(255,255,255,0.06);
-    -fx-border-radius: 14;
+    -fx-border-color: rgba(238,77,45,0.18);
+    -fx-border-radius: 12;
 }
 
 .muted{
-    -fx-text-fill: rgba(255,255,255,0.70);
+    -fx-text-fill: rgba(17,24,39,0.70);
 }
 .value{
-    -fx-text-fill: rgba(255,255,255,0.92);
-    -fx-font-weight: 700;
+    -fx-text-fill: #111827;
+    -fx-font-weight: 800;
 }
 .total{
-    -fx-text-fill: white;
-    -fx-font-size: 18px;
+    -fx-text-fill: #ee4d2d;
+    -fx-font-size: 20px;
     -fx-font-weight: 900;
 }
 
 /* Inputs */
 .field, .combo-box{
-    -fx-background-color: rgba(255,255,255,0.08);
-    -fx-background-radius: 12;
-    -fx-border-color: rgba(255,255,255,0.10);
-    -fx-border-radius: 12;
-    -fx-padding: 10 12 10 12;
-    -fx-text-fill: white;
-    -fx-prompt-text-fill: rgba(255,255,255,0.45);
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-color: rgba(0,0,0,0.18);
+    -fx-border-radius: 8;
+    -fx-padding: 9 12 9 12;
+    -fx-text-fill: #111827;
+    -fx-prompt-text-fill: rgba(17,24,39,0.45);
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
 .field:focused, .combo-box:focused{
-    -fx-border-color: rgba(242,184,7,0.75);
+    -fx-border-color: #ee4d2d;
 }
 
-/* Buttons */
+/* Primary button */
 .btn-primary{
-    -fx-background-color: #f2b807;
-    -fx-text-fill: #111827;
+    -fx-background-color: #ee4d2d;
+    -fx-text-fill: white;
     -fx-font-weight: 900;
-    -fx-background-radius: 14;
+    -fx-background-radius: 10;
     -fx-cursor: hand;
 }
-.btn-primary:hover{ -fx-opacity: 0.92; }
-
-.btn-ghost{
-    -fx-background-color: rgba(255,255,255,0.08);
-    -fx-text-fill: rgba(255,255,255,0.92);
-    -fx-background-radius: 12;
-    -fx-cursor: hand;
-    -fx-padding: 8 14 8 14;
-}
-.btn-ghost:hover{ -fx-background-color: rgba(255,255,255,0.12); }
+.btn-primary:hover{ -fx-background-color: #ff5a3c; }
+.btn-primary:pressed{ -fx-background-color: #d84227; }
 
 /* SplitPane */
 .splitpane{
     -fx-background-color: transparent;
 }
 .splitpane > .split-pane-divider{
-    -fx-background-color: rgba(255,255,255,0.06);
+    -fx-background-color: rgba(0,0,0,0.06);
     -fx-padding: 0 1 0 1;
 }
 
-/* Table — minimal, no grid */
+/* Table */
 .table{
     -fx-background-color: transparent;
-    -fx-border-color: rgba(255,255,255,0.08);
-    -fx-border-radius: 14;
-    -fx-background-radius: 14;
+    -fx-border-color: rgba(0,0,0,0.08);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
 }
 
 .table .column-header-background{
-    -fx-background-color: rgba(255,255,255,0.06);
-    -fx-background-radius: 14 14 0 0;
+    -fx-background-color: #f9fafb;
+    -fx-background-radius: 10 10 0 0;
     -fx-padding: 6;
 }
 .table .column-header, .table .filler{
     -fx-background-color: transparent;
 }
 .table .column-header .label{
-    -fx-text-fill: rgba(255,255,255,0.82);
+    -fx-text-fill: rgba(17,24,39,0.82);
     -fx-font-weight: 800;
 }
 
 .table .table-row-cell{
-    -fx-background-color: transparent;
+    -fx-background-color: white;
     -fx-border-color: transparent;
 }
 .table .table-row-cell:odd{
-    -fx-background-color: rgba(255,255,255,0.03);
+    -fx-background-color: #fcfcfc;
 }
 .table .table-row-cell:selected{
-    -fx-background-color: rgba(242,184,7,0.18);
+    -fx-background-color: rgba(238,77,45,0.12);
 }
 
 .table .table-cell{
-    -fx-text-fill: rgba(255,255,255,0.86);
+    -fx-text-fill: rgba(17,24,39,0.88);
     -fx-border-color: transparent;
     -fx-padding: 10 8 10 8;
 }
@@ -141,26 +145,27 @@
     -fx-background-color: transparent;
 }
 .scroll-bar .thumb{
-    -fx-background-color: rgba(255,255,255,0.18);
+    -fx-background-color: rgba(0,0,0,0.18);
     -fx-background-radius: 10;
 }
 
+/* Your existing table action styles still work if you add these classes on buttons in cells */
 .table-action-add{
-    -fx-background-color: rgba(242,184,7,0.95);
-    -fx-text-fill: #111827;
+    -fx-background-color: #ee4d2d;
+    -fx-text-fill: white;
     -fx-font-weight: 900;
-    -fx-background-radius: 10;
+    -fx-background-radius: 8;
     -fx-padding: 6 10 6 10;
     -fx-cursor: hand;
 }
-.table-action-add:hover{ -fx-opacity: 0.92; }
+.table-action-add:hover{ -fx-background-color: #ff5a3c; }
 
 .table-action-remove{
-    -fx-background-color: rgba(255,255,255,0.10);
-    -fx-text-fill: rgba(255,255,255,0.92);
+    -fx-background-color: rgba(0,0,0,0.06);
+    -fx-text-fill: #111827;
     -fx-font-weight: 800;
-    -fx-background-radius: 10;
+    -fx-background-radius: 8;
     -fx-padding: 6 10 6 10;
     -fx-cursor: hand;
 }
-.table-action-remove:hover{ -fx-background-color: rgba(255,255,255,0.14); }
+.table-action-remove:hover{ -fx-background-color: rgba(0,0,0,0.10); }

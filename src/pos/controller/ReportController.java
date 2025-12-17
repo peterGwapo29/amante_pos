@@ -44,6 +44,8 @@ public class ReportController implements Initializable {
 
     private Connection conn;
     private final ObservableList<SaleRow> rows = FXCollections.observableArrayList();
+    @FXML
+    private AnchorPane rootPane;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

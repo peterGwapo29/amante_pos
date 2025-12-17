@@ -1,0 +1,169 @@
+.page-root{
+    -fx-background-color: #f5f5f5;
+    -fx-font-family: "Poppins","Inter","Segoe UI","Arial";
+}
+
+/* Topbar */
+.topbar{
+    -fx-background-color: #ee4d2d;
+}
+.topbar-title{
+    -fx-text-fill: rgba(255,255,255,0.92);
+    -fx-font-weight: 800;
+}
+.topbar-title-strong{
+    -fx-text-fill: white;
+    -fx-font-weight: 900;
+}
+.topbar-title-muted{
+    -fx-text-fill: rgba(255,255,255,0.85);
+    -fx-font-weight: 700;
+}
+
+/* Content area */
+.content-area{
+    -fx-background-color: transparent;
+}
+
+.section-title{
+    -fx-text-fill: #111827;
+    -fx-font-size: 16px;
+    -fx-font-weight: 900;
+}
+
+/* Cards */
+.card{
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(0,0,0,0.06);
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 18, 0.18, 0, 4);
+}
+
+.card-accent{
+    -fx-background-color: #fff7f5;
+    -fx-border-color: rgba(238,77,45,0.20);
+}
+
+/* Card texts */
+.card-label{
+    -fx-text-fill: rgba(17,24,39,0.65);
+    -fx-font-weight: 800;
+}
+
+.card-value{
+    -fx-text-fill: #111827;
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+}
+
+.card-value-accent{
+    -fx-text-fill: #ee4d2d;
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+}
+
+.card-sub{
+    -fx-text-fill: rgba(17,24,39,0.55);
+    -fx-font-weight: 700;
+}
+
+/* Placeholder */
+.placeholder{
+    -fx-text-fill: rgba(17,24,39,0.45);
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+}
+
+/* --- Extra Dashboard Content --- */
+.panel-title{
+    -fx-text-fill: #111827;
+    -fx-font-size: 14px;
+    -fx-font-weight: 900;
+}
+
+.pill{
+    -fx-background-color: #f3f4f6;
+    -fx-text-fill: rgba(17,24,39,0.70);
+    -fx-font-weight: 800;
+    -fx-padding: 6 10 6 10;
+    -fx-background-radius: 999;
+    -fx-border-color: rgba(0,0,0,0.06);
+    -fx-border-radius: 999;
+}
+.pill-accent{
+    -fx-background-color: rgba(238,77,45,0.12);
+    -fx-text-fill: #ee4d2d;
+    -fx-border-color: rgba(238,77,45,0.18);
+}
+
+/* Quick action cards */
+.action-card{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(0,0,0,0.06);
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 16, 0.16, 0, 3);
+}
+.action-card:hover{
+    -fx-background-color: #fff7f5;
+    -fx-border-color: rgba(238,77,45,0.18);
+}
+.action-card-accent{
+    -fx-background-color: #fff7f5;
+    -fx-border-color: rgba(238,77,45,0.20);
+}
+
+.action-title{
+    -fx-text-fill: #111827;
+    -fx-font-size: 15px;
+    -fx-font-weight: 900;
+}
+.action-sub{
+    -fx-text-fill: rgba(17,24,39,0.65);
+    -fx-font-weight: 700;
+}
+.action-hint{
+    -fx-text-fill: rgba(17,24,39,0.45);
+    -fx-font-weight: 800;
+}
+
+/* Simple list rows */
+.list-row{
+    -fx-background-color: #f9fafb;
+    -fx-background-radius: 10;
+    -fx-padding: 10 12 10 12;
+    -fx-border-color: rgba(0,0,0,0.06);
+    -fx-border-radius: 10;
+}
+.card-accent .list-row{
+    -fx-background-color: rgba(238,77,45,0.06);
+    -fx-border-color: rgba(238,77,45,0.12);
+}
+
+.list-left{
+    -fx-text-fill: #111827;
+    -fx-font-weight: 800;
+}
+.list-right{
+    -fx-text-fill: rgba(17,24,39,0.70);
+    -fx-font-weight: 900;
+}
+
+/* Alerts */
+.alert-row{
+    -fx-background-color: rgba(238,77,45,0.06);
+    -fx-background-radius: 10;
+    -fx-padding: 10 12 10 12;
+    -fx-border-color: rgba(238,77,45,0.12);
+    -fx-border-radius: 10;
+}
+.alert-label{
+    -fx-text-fill: rgba(17,24,39,0.65);
+    -fx-font-weight: 900;
+    -fx-pref-width: 120;
+}
+.alert-value{
+    -fx-text-fill: #111827;
+    -fx-font-weight: 900;
+}

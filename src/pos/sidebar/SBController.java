@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package pos.sidebar;
 
 import java.io.IOException;
@@ -42,33 +38,34 @@ public class SBController implements Initializable {
     @FXML
     private Button btnLogout;
     
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cashierName.setText(UserSession.getEmail());
         roleType.setText(UserSession.getRole());
-        
-        boolean isCashier = UserSession.getRole() != null
-            && UserSession.getRole().equalsIgnoreCase("cashier");
-        
-//        if (UserSession.getRole() != null && UserSession.getRole().equalsIgnoreCase("cashier")) {
-//            btnDashboard.setVisible(false);
-//            btnDashboard.setManaged(false);
-//        }
-        
-         if (isCashier) {
-            // show ONLY transaction (sales)
+
+        String role = UserSession.getRole();
+        boolean isCashier = role != null && role.equalsIgnoreCase("cashier");
+        boolean isAdmin   = role != null && role.equalsIgnoreCase("admin");
+
+        if (isCashier) {
+            // CASHIER: only Transaction
             btnDashboard.setVisible(false); btnDashboard.setManaged(false);
             btnProduct.setVisible(false);   btnProduct.setManaged(false);
             btnReport.setVisible(false);    btnReport.setManaged(false);
 
-            // rename Sales -> Transaction
             btnSales.setText("Transaction");
-        } else {
-            // admin / others: normal
-            btnSales.setText("Sales");
+
+        } else if (isAdmin) {
+            // ADMIN: hide Sales / Transaction
+            btnSales.setVisible(false);
+            btnSales.setManaged(false);
         }
+
+        restoreActiveMenu();
     }
 
+    
     @FXML
     private void handleLogoutAction(ActionEvent event) throws IOException {
         if(event.getSource() == btnLogout){
@@ -85,6 +82,7 @@ public class SBController implements Initializable {
     @FXML
     private void handleProductAction(ActionEvent event) throws IOException {
         if (event.getSource() == btnProduct) {
+            UserSession.setActiveMenu("PRODUCT");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/pos/view/Product.fxml"));
             Parent root = loader.load();
 
@@ -102,10 +100,11 @@ public class SBController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
+    
     @FXML
     private void handleSalesAction(ActionEvent event) throws IOException {
-
+        
+        UserSession.setActiveMenu("SALES");
         boolean isCashier = UserSession.getRole() != null
                 && UserSession.getRole().equalsIgnoreCase("cashier");
 
@@ -121,10 +120,9 @@ public class SBController implements Initializable {
         stage.show();
     }
 
-
-
     @FXML
     private void handleReportAction(javafx.event.ActionEvent event) throws java.io.IOException {
+        UserSession.setActiveMenu("REPORT");
         javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/pos/view/Report.fxml"));
         javafx.scene.Parent root = loader.load();
 
@@ -132,6 +130,27 @@ public class SBController implements Initializable {
         stage.setScene(new javafx.scene.Scene(root));
         stage.show();
     }
+    
+    private void setActive(Button active) {
+        btnProduct.getStyleClass().remove("menu-btn-active");
+        btnSales.getStyleClass().remove("menu-btn-active");
+        btnReport.getStyleClass().remove("menu-btn-active");
 
+        if (!active.getStyleClass().contains("menu-btn-active")) {
+            active.getStyleClass().add("menu-btn-active");
+        }
+    }
+
+    private void restoreActiveMenu() {
+        String active = UserSession.getActiveMenu();
+
+        if (active == null) return;
+
+        switch (active) {
+            case "PRODUCT"   -> setActive(btnProduct);
+            case "SALES"     -> setActive(btnSales);
+            case "REPORT"    -> setActive(btnReport);
+        }
+    }
 
 }

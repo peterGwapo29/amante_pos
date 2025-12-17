@@ -3,89 +3,115 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.ComboBox?>
 
-<AnchorPane fx:id="rootPane" prefHeight="800.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pos.controller.ProductController">
+<AnchorPane fx:id="rootPane"
+            prefHeight="800.0" prefWidth="1080.0"
+            styleClass="page-root"
+            xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pos.controller.ProductController">
 
     <stylesheets>
-        <URL value="@/pos/css/product.css" />
+        <URL value="@/pos/css/product.css"/>
     </stylesheets>
 
     <children>
-        <!-- Sidebar placeholder -->
-        <AnchorPane fx:id="sidebarContainer" layoutX="0.0" layoutY="0.0" prefHeight="800.0" prefWidth="250.0" />
 
-        <!-- Main content area background -->
-        <Rectangle arcWidth="5.0" fill="#f4f7fa" height="800.0" layoutX="250.0" strokeWidth="0.0" width="1210.0" />
+        <!-- Sidebar placeholder (fx:id unchanged) -->
+        <AnchorPane fx:id="sidebarContainer"
+                    layoutX="0.0" layoutY="0.0"
+                    prefHeight="800.0" prefWidth="250.0"
+                    styleClass="sidebar-host"/>
 
-        <!-- Top header -->
-        <HBox alignment="CENTER_LEFT" layoutX="260.0" layoutY="20.0" prefHeight="70.0" prefWidth="820.0">
-            <children>
-                <Label style="-fx-font-family: Poppins;" text="Product Management">
-                    <font>
-                        <Font name="Arial" size="24.0" />
-                    </font>
-                </Label>
-            </children>
+        <!-- Background -->
+        <Rectangle layoutX="250.0" layoutY="0.0" width="1210.0" height="800.0"
+                   arcWidth="0.0" arcHeight="0.0"
+                   strokeWidth="0.0" fill="#f5f5f5"/>
+
+        <!-- Shopee top bar -->
+        <HBox layoutX="250.0" layoutY="0.0" prefWidth="1210.0" prefHeight="78.0"
+              alignment="CENTER_LEFT" spacing="10" styleClass="topbar">
+            <padding>
+                <Insets top="0" right="18" bottom="0" left="18"/>
+            </padding>
+            <Label text="Product Management" styleClass="topbar-title">
+                <font>
+                    <Font name="Arial" size="20.0"/>
+                </font>
+            </Label>
         </HBox>
-        
-        <ComboBox fx:id="cmbStatus"
-          promptText="Status"
-          prefWidth="150"/>
 
+        <!-- Main card container -->
+        <VBox layoutX="262.0" layoutY="92.0" prefWidth="1184.0" prefHeight="690.0"
+              spacing="12" styleClass="card">
 
-        <!-- Product table -->
-        <TableView fx:id="tableView" layoutX="270.0" layoutY="140.0" prefHeight="500.0" prefWidth="1178.0">
-            <columns>
-                <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
-                <TableColumn fx:id="nameColumn" prefWidth="100.0" text="Name" />
-                <TableColumn fx:id="descriptionColumn" prefWidth="120.0" text="Description" />
-                <TableColumn fx:id="categoryColumn" prefWidth="90.0" text="Category" />
-                <TableColumn fx:id="supplierColumn" prefWidth="90.0" text="Supplier" />
-                <TableColumn fx:id="skuColumn" prefWidth="80.0" text="SKU" />
-                <TableColumn fx:id="barcodeColumn" prefWidth="80.0" text="Barcode" />
-                <TableColumn fx:id="inventoryColumn" prefWidth="80.0" text="Inventory" />
-                <TableColumn fx:id="initialStockColumn" prefWidth="80.0" text="Initial Stock" />
-                <TableColumn fx:id="currentStockColumn" prefWidth="80.0" text="Current Stock" />
-                <TableColumn fx:id="imageColumn" prefWidth="80.0" text="Image Stock" />
-                <TableColumn fx:id="baseUnitColumn" prefWidth="90.0" text="Base Unit" />
-                <TableColumn fx:id="priceColumn" prefWidth="80.0" text="Price" />
-                <TableColumn fx:id="costColumn" prefWidth="80.0" text="Cost" />
-                <TableColumn fx:id="activeColumn" prefWidth="90.0" text="Active Column" />
-                <TableColumn fx:id="createdAtColumn" prefWidth="90.0" text="Create At" />
-            </columns>
-        </TableView>
-      <HBox alignment="CENTER_LEFT" layoutX="262.0" layoutY="75.0" prefHeight="54.0" prefWidth="1184.0" spacing="8.0">
-         <children>
-      
-              <!-- Add Product Button -->
-              <Button fx:id="addProductButton" mnemonicParsing="false" onAction="#addProductModal" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #940857; -fx-text-fill: white; -fx-font-size: 14;" text="Add Product">
-                  <graphic>
-                      <ImageView fitHeight="18.0" fitWidth="18.0" preserveRatio="true" />
-                  </graphic>
-              </Button>
-                <Button onAction="#openSupplierManager" text="Manage Suppliers" />
-                <Button onAction="#openCategoryManager" text="Manage Categories" />
-                <Button layoutX="720.0" layoutY="80.0" onAction="#openVariantManager" text="Manage Variants" />
-                <Button layoutX="860.0" layoutY="80.0" onAction="#openModifierManager" text="Manage Modifiers" />
-                <Button layoutX="1010.0" layoutY="80.0" onAction="#openBundleManager" text="Manage Bundle" />
-                <Button text="Update Product" onAction="#updateProduct" />
-                <Button text="Delete Product" onAction="#deleteProduct" />
+            <children>
 
-         </children>
-         <padding>
-            <Insets top="10.0" />
-         </padding>
-      </HBox>
-        
-        
+                <!-- Toolbar row (fx:ids unchanged) -->
+                <HBox alignment="CENTER_LEFT" spacing="8.0" styleClass="toolbar">
+                    <padding>
+                        <Insets top="10.0" right="12.0" bottom="6.0" left="12.0"/>
+                    </padding>
+
+                    <Button fx:id="addProductButton"
+                            mnemonicParsing="false"
+                            onAction="#addProductModal"
+                            prefHeight="38.0" prefWidth="150.0"
+                            styleClass="btn-primary"
+                            text="Add Product">
+                        <graphic>
+                            <ImageView fitHeight="18.0" fitWidth="18.0" preserveRatio="true"/>
+                        </graphic>
+                    </Button>
+
+                    <!-- fx:id unchanged -->
+                    <ComboBox fx:id="cmbStatus" prefWidth="160.0" promptText="Status" styleClass="combo"/>
+
+                    <Button onAction="#openSupplierManager" styleClass="btn-secondary" text="Manage Suppliers"/>
+                    <Button onAction="#openCategoryManager" styleClass="btn-secondary" text="Manage Categories"/>
+                    <Button onAction="#openVariantManager" styleClass="btn-secondary" text="Manage Variants"/>
+                    <Button onAction="#openModifierManager" styleClass="btn-secondary" text="Manage Modifiers"/>
+                    <Button onAction="#openBundleManager" styleClass="btn-secondary" text="Manage Bundle"/>
+
+                    <Button onAction="#updateProduct" styleClass="btn-secondary" text="Update Product"/>
+                    <Button onAction="#deleteProduct" styleClass="btn-danger" text="Delete Product"/>
+
+                </HBox>
+
+                <!-- Table (fx:id unchanged) -->
+                <TableView fx:id="tableView" VBox.vgrow="ALWAYS" styleClass="data-table">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
+                        <TableColumn fx:id="nameColumn" prefWidth="100.0" text="Name" />
+                        <TableColumn fx:id="descriptionColumn" prefWidth="120.0" text="Description" />
+                        <TableColumn fx:id="categoryColumn" prefWidth="90.0" text="Category" />
+                        <TableColumn fx:id="supplierColumn" prefWidth="90.0" text="Supplier" />
+                        <TableColumn fx:id="skuColumn" prefWidth="80.0" text="SKU" />
+                        <TableColumn fx:id="barcodeColumn" prefWidth="80.0" text="Barcode" />
+                        <TableColumn fx:id="inventoryColumn" prefWidth="80.0" text="Inventory" />
+                        <TableColumn fx:id="initialStockColumn" prefWidth="80.0" text="Initial Stock" />
+                        <TableColumn fx:id="currentStockColumn" prefWidth="80.0" text="Current Stock" />
+                        <TableColumn fx:id="imageColumn" prefWidth="80.0" text="Image Stock" />
+                        <TableColumn fx:id="baseUnitColumn" prefWidth="90.0" text="Base Unit" />
+                        <TableColumn fx:id="priceColumn" prefWidth="80.0" text="Price" />
+                        <TableColumn fx:id="costColumn" prefWidth="80.0" text="Cost" />
+                        <TableColumn fx:id="activeColumn" prefWidth="90.0" text="Active Column" />
+                        <TableColumn fx:id="createdAtColumn" prefWidth="90.0" text="Create At" />
+                    </columns>
+                </TableView>
+
+            </children>
+        </VBox>
+
     </children>
 </AnchorPane>

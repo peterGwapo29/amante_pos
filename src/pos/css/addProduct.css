@@ -1,0 +1,180 @@
+.ap-root{
+    -fx-background-color: #f5f5f5;
+    -fx-font-family: "Poppins","Inter","Segoe UI","Arial";
+}
+
+.ap-shell{
+    -fx-background-color: transparent;
+}
+
+/* Header */
+.ap-topbar{
+    -fx-background-color: #ee4d2d;
+}
+.ap-title{
+    -fx-text-fill: white;
+    -fx-font-weight: 900;
+}
+.ap-subtitle{
+    -fx-text-fill: rgba(255,255,255,0.90);
+    -fx-font-weight: 700;
+    -fx-font-size: 12px;
+}
+
+/* ScrollPane */
+.ap-scroll{
+    -fx-background-color: transparent;
+}
+.ap-scroll .viewport{
+    -fx-background-color: transparent;
+}
+
+/* Content area spacing */
+.ap-content{
+    -fx-background-color: transparent;
+}
+
+/* Cards */
+.ap-card{
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(0,0,0,0.06);
+    -fx-border-radius: 12;
+    -fx-padding: 14;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 18, 0.18, 0, 4);
+}
+
+.ap-section-title{
+    -fx-text-fill: #111827;
+    -fx-font-weight: 900;
+    -fx-font-size: 14px;
+}
+
+.ap-label{
+    -fx-text-fill: rgba(17,24,39,0.72);
+    -fx-font-weight: 800;
+}
+
+.ap-muted{
+    -fx-text-fill: rgba(17,24,39,0.55);
+    -fx-font-weight: 700;
+}
+
+/* Inputs */
+.ap-field, .combo-box{
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(0,0,0,0.18);
+    -fx-border-radius: 10;
+    -fx-padding: 9 12 9 12;
+    -fx-text-fill: #111827;
+    -fx-prompt-text-fill: rgba(17,24,39,0.45);
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+.ap-field:focused, .combo-box:focused{
+    -fx-border-color: #ee4d2d;
+}
+
+.ap-area{
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(0,0,0,0.18);
+    -fx-border-radius: 10;
+    -fx-text-fill: #111827;
+    -fx-prompt-text-fill: rgba(17,24,39,0.45);
+}
+.ap-area:focused{
+    -fx-border-color: #ee4d2d;
+}
+
+/* Table */
+.ap-table{
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0,0,0,0.08);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-table-cell-border-color: transparent;
+}
+
+.ap-table .column-header-background{
+    -fx-background-color: #f9fafb;
+    -fx-background-radius: 10 10 0 0;
+    -fx-padding: 6;
+}
+.ap-table .column-header, .ap-table .filler{
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0,0,0,0.08);
+    -fx-border-width: 0 0 1 0;
+}
+.ap-table .column-header .label{
+    -fx-text-fill: rgba(17,24,39,0.86);
+    -fx-font-weight: 900;
+}
+
+.ap-table .table-row-cell{
+    -fx-background-color: white;
+    -fx-border-color: rgba(0,0,0,0.06);
+    -fx-border-width: 0 0 1 0;
+    -fx-cell-size: 40px;
+}
+.ap-table .table-row-cell:odd{ -fx-background-color: #fcfcfc; }
+.ap-table .table-row-cell:filled:selected,
+.ap-table .table-row-cell:filled:selected:hover{
+    -fx-background-color: rgba(238,77,45,0.14);
+}
+.ap-table .table-cell{
+    -fx-text-fill: rgba(17,24,39,0.90);
+    -fx-padding: 0 10 0 10;
+}
+
+/* Buttons */
+.ap-btn-primary{
+    -fx-background-color: #ee4d2d;
+    -fx-text-fill: white;
+    -fx-font-weight: 900;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+.ap-btn-primary:hover{ -fx-background-color: #ff5a3c; }
+
+.ap-btn-secondary{
+    -fx-background-color: rgba(238,77,45,0.10);
+    -fx-text-fill: #ee4d2d;
+    -fx-font-weight: 900;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+.ap-btn-secondary:hover{ -fx-background-color: rgba(238,77,45,0.16); }
+
+.ap-btn-danger{
+    -fx-background-color: rgba(239,68,68,0.14);
+    -fx-text-fill: #b91c1c;
+    -fx-font-weight: 900;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+.ap-btn-danger:hover{ -fx-background-color: rgba(239,68,68,0.22); }
+
+/* Checkbox */
+.ap-check{
+    -fx-font-weight: 800;
+}
+
+/* Footer */
+.ap-footer{
+    -fx-background-color: white;
+    -fx-border-color: rgba(0,0,0,0.06);
+    -fx-border-width: 1 0 0 0;
+}
+
+.ap-submit{
+    -fx-background-color: #ee4d2d;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 900;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+}
+.ap-submit:hover{ -fx-background-color: #ff5a3c; }
+.ap-submit:pressed{ -fx-background-color: #d84227; }

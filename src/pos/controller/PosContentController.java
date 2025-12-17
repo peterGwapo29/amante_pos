@@ -62,7 +62,7 @@ public class PosContentController implements Initializable {
         
         String sql =
             "SELECT id,name,description,categoryId,supplierId,sku,barcode,inventoryTracking,baseUnit," +
-            "price,discountPercent,cost,initialStock,currentStock,image,isActive,createdAt " +
+            "price,discountPercent,cost,initialStock,currentStock,image,isActive, productType, createdAt " +
             "FROM product WHERE isActive=1 AND (name LIKE ? OR sku LIKE ? OR barcode LIKE ?) ORDER BY name";
 
 
